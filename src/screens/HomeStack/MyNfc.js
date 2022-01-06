@@ -4,7 +4,7 @@ import MyNfc from '../../containers/home/MyNfc';
 
 function MyNfcScreen() {
     return (
-        <View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <MyNfc />
         </View>
     )

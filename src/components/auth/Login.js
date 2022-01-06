@@ -1,10 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
 function Login(props) {
+    const navigation = useNavigation();
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View >
             <Text>Login</Text>
+            <Button onPress={() => navigation.navigate('EntrepreneurInfo')} title="이동" />
         </View>
     )
 }

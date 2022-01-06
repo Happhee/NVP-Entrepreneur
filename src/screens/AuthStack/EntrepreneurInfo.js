@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import EntrepreneurInfo from '../../containers/auth/EntrepreneurInfo';
 function EntrepreneurInfoScreen() {
     return (
-        <View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <EntrepreneurInfo />
         </View>
     )

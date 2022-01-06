@@ -11,7 +11,7 @@ import IdPasswordScreen from '../screens/AuthStack/IdPassword';
 const Stack = createNativeStackNavigator();
 
 const AuthStackScreen = () => {
-    retunr(
+    return (
         <Stack.Navigator>
             <Stack.Screen name='Login' component={LoginScreen}
                 options={{
@@ -52,3 +52,5 @@ const AuthStackScreen = () => {
         </Stack.Navigator>
     )
 }
+
+export default AuthStackScreen;

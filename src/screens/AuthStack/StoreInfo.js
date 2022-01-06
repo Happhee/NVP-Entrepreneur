@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import StoreInfo from '../../containers/auth/StoreInfo';
 function StoreInfoScreen() {
     return (
-        <View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <StoreInfo />
         </View>
     )

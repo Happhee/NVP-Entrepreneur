@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import Login from '../../containers/auth/Login';
 function LoginScreen() {
     return (
-        <View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Login />
         </View>
     )

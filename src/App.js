@@ -5,16 +5,23 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text, View, Button } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import store from './redux/store';
+
+import SplashScreen from './screens/SplashScreen';
+import AuthStackScreen from './navigations/AuthStack';
+import MainTabScreen from './navigations/MainTab';
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <Provider store={store}>
-      <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
-        <Text style={{ backgroundColor: 'white' }}>
-          시작
-        </Text>
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Splash">
+          <Stack.Screen name="Main" component={MainTabScreen} />
+          <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="Auth" component={AuthStackScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
 
   )

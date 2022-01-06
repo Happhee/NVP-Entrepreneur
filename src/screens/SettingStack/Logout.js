@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import Logout from '../../containers/setting/Logout';
 function LogoutScreen() {
     return (
-        <View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Logout />
         </View>
     )

@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import FindPassword from '../../containers/auth/FindPassword';
 function FindPasswordScreen() {
     return (
-        <View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <FindPassword />
         </View>
     )

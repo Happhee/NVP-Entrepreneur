@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import IdPassword from '../../containers/auth/IdPassword';
 function IdPasswordScreen() {
     return (
-        <View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <IdPassword />
         </View>
     )
