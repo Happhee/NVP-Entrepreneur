@@ -6,7 +6,7 @@ function Login(props) {
     const navigation = useNavigation();
     return (
         <View >
-            <Text>Login</Text>
+            <Text style={{ fontFamily: 'DoHyeon-Regular' }}>Login</Text>
             <Button onPress={() => navigation.navigate('EntrepreneurInfo')} title="이동" />
         </View>
     )
