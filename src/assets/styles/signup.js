@@ -14,6 +14,7 @@ const signupStyles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
+        marginBottom: 20
     },
     inputTitleText: {
         color: colors.nvpRoot,
@@ -64,19 +65,22 @@ const signupStyles = StyleSheet.create({
         marginRight: 10,
         textAlign: 'center',
     },
-
-    footer: {
-        flex: 2,
+    loginButtonView: {
+        width: '70%',
         alignItems: 'center',
         justifyContent: 'center',
 
     },
-    footerButtonView: {
+    footer: {
         flex: 2,
+        alignItems: 'center',
+    },
+    footerButtonView: {
+        flex: 1,
         width: '55%',
         flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start'
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 
 });
