@@ -2,8 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, Keyboard } from 'react-native';
 import colors from '../../assets/colors/color';
-import signupStyles from '../../assets/styles/signup';
-import FooterButton from '../common/FooterButton';
+import authStyles from '../../assets/styles/auth';
+import { FooterButton } from '../common/Button';
 import Header from '../common/Header';
 import IconButton from '../common/IconButton';
 import { TouchableWithoutFeedback } from 'react-native';
@@ -14,13 +14,13 @@ function Login(props) {
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
-            <View style={signupStyles.container}>
+            <View style={authStyles.container}>
                 <Header title="NVP" subTitle="로그인" />
-                <View style={signupStyles.inputRoot}>
-                    <View style={signupStyles.inputView}>
-                        <Text style={signupStyles.inputTitleText}>아이디</Text>
+                <View style={authStyles.inputRoot}>
+                    <View style={authStyles.inputView}>
+                        <Text style={authStyles.inputTitleText}>아이디</Text>
                         <TextInput
-                            style={signupStyles.inputTextInput}
+                            style={authStyles.inputTextInput}
                             placeholder="id"
                             placeholderTextColor={colors.nvpRoot}
                             onChangeText={(inputId) => {
@@ -28,10 +28,10 @@ function Login(props) {
                             }}
                         />
                     </View>
-                    <View style={signupStyles.inputView}>
-                        <Text style={signupStyles.inputTitleText}>비밀번호</Text>
+                    <View style={authStyles.inputView}>
+                        <Text style={authStyles.inputTitleText}>비밀번호</Text>
                         <TextInput
-                            style={signupStyles.inputTextInput}
+                            style={authStyles.inputTextInput}
                             keyboardType="number-pad"
                             maxLength={6}
                             placeholder="password"
@@ -48,17 +48,18 @@ function Login(props) {
 
                 </View>
 
-                <View style={signupStyles.footer}>
-                    <View style={signupStyles.loginButtonView}>
+                <View style={authStyles.footer}>
+                    <View style={authStyles.loginButtonView}>
                         <IconButton icon='login' onPress={() => {
                             console.log('로그인요청')
                             props.login({ id: id, password: password })
+                            navigation.navigate('Main')
                         }} />
                     </View>
 
-                    <View style={signupStyles.footerButtonView}>
+                    <View style={authStyles.footerButtonView}>
                         <FooterButton onPress={() => { navigation.navigate('ChoiceIdPassword') }} buttonText='아이디/비번 찾기' />
-                        <FooterButton onPress={() => { navigation.navigate('StoreInfo') }} buttonText='회원가입' />
+                        <FooterButton onPress={() => { navigation.navigate('EntrepreneurInfo') }} buttonText='회원가입' />
                     </View>
 
                 </View>

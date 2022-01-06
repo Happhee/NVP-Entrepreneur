@@ -49,7 +49,7 @@ const SettingStackScreen = (props) => {
                 options={{
                     title: '로그아웃',
                 }} />
-            <SettingStack.Screen name="WithdrawalUser" component={WithdrawalScreen}
+            <SettingStack.Screen name="Withdrawal" component={WithdrawalScreen}
                 options={{
                     title: '회원탈퇴',
                 }} />
