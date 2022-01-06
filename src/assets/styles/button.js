@@ -18,6 +18,16 @@ const buttonStyles = StyleSheet.create({
         color: 'white'
 
     },
+    iconButton: {
+        borderRadius: 10,
+        width: '40%',
+        backgroundColor: colors.nvpRoot,
+        fontFamily: 'DoHyeon-Regular',
+        fontSize: 21,
+        marginBottom: 10,
+        marginLeft: 4,
+        marginRight: 4,
+    }
 
 });
 
