@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput } from 'react-native';
+import { View, Text, Button, TextInput, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native';
 import authStyles from '../../assets/styles/auth';
@@ -8,8 +8,10 @@ import colors from '../../assets/colors/color';
 import { FooterButton, ConfirmButton, IconButton, FontAwesomeButton } from '../common/Button';
 
 function EntrepreneurInfo(props) {
+    const [number, setNumber] = useState('');
 
     const navigation = useNavigation();
+    console.log(props)
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
@@ -21,19 +23,20 @@ function EntrepreneurInfo(props) {
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
-                            // maxLength={6}
-                            placeholder="사업자등록번호"
+                            maxLength={10}
+                            placeholder="숫자 10자리"
                             placeholderTextColor={colors.nvpRoot}
                             secureTextEntry
-                            onChangeText={(inputPassword) => {
-                                setPassword(inputPassword);
-                                if (inputPassword.length == 6) {
+                            onChangeText={(inputNumber) => {
+                                setNumber(inputNumber);
+                                if (inputNumber.length == 10) {
                                     Keyboard.dismiss();
                                 }
                             }}
                         />
                         <ConfirmButton buttonText='확인' onPress={() => {
                             console.log('사업자 등록번호')
+                            props.checkEntrepreneurStatus({ b_no: [number] })
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
