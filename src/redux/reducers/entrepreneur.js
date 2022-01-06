@@ -15,7 +15,7 @@ const initialState = {
 }
 
 function entrepreneurReducer(state = initialState, action) {
-
+    return { ...state }
 }
 
 export default entrepreneurReducer;
