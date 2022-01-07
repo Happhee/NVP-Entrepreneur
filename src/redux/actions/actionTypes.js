@@ -3,7 +3,16 @@ export const SIGN_UP = "SIGN_UP";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 
+//sms
+export const SMS_MESSAGE = "SMS_MESSAGE";
+export const SMS_MESSAGE_SUCCESS = "SMS_MESSAGE_SUCCESS"
+export const SMS_MESSAGE_FAILURE = "SMS_MESSAGE_FAILURE"
 
+export const EXPIRE_SMS_MESSAGE = "EXPIRE_SMS_MESSAGE";
+export const VERIFICATION_SMS_MESSAGE = "VERIFICATION_SMS_MESSAGE";
+
+export const MESSAGE_TIME_OUT = "MESSAGE_TIME_OUT";
+export const NO_EXIST_MESSAGE = "NO_EXIST_MESSAGE"
 
 //login
 export const LOGIN = "LOGIN";

@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } from "../actions/actionTyps";
+import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } from "../actions/actionTypes";
 import axiosInstance from "../../lib/axiosInstance";
 import { ENTREPRENEUR_URL, LOGIN_URL } from "../../lib/url";
 export const login = (dataToSubmit) => {

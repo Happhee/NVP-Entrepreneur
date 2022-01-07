@@ -7,12 +7,14 @@ import Header from '../common/Header';
 import colors from '../../assets/colors/color';
 import { FooterButton, ConfirmButton, IconButton, FontAwesomeButton } from '../common/Button';
 import { isName } from '../../utils/regex';
-import { NOT_ENTREPRENEUR_NUMBER } from '../../redux/actions/actionTyps';
+import { NOT_ENTREPRENEUR_NUMBER } from '../../redux/actions/actionTypes';
 
 function EntrepreneurInfo(props) {
     const [number, setNumber] = useState('');
     const [startDate, setStartDate] = useState('');
     const [name, setName] = useState('');
+    const [icon, setIcon] = useState('remove')
+
     const navigation = useNavigation();
     console.log(props)
 
@@ -70,28 +72,11 @@ function EntrepreneurInfo(props) {
                             }}
                         />
                     </View>
-                    <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>사업장  소재지</Text>
-                        <TextInput
-                            style={authStyles.inputTextInput}
-                            keyboardType="number-pad"
-                            placeholderTextColor={colors.nvpUnder}
-                            onChangeText={(inputPassword) => {
-                                setStartDate(inputPassword);
-                                if (inputPassword.length == 6) {
-                                    Keyboard.dismiss();
-                                }
-                            }}
-                        />
-                        <ConfirmButton buttonText='찾기' onPress={() => {
-                            console.log('사업자 등록번호')
-                            props.checkEntrepreneurStatus({ b_no: [number] })
-                        }} />
-                    </View>
+
                 </View>
                 <View style={authStyles.nextButtonView}>
                     <View style={authStyles.loginButtonView}>
-                        <FontAwesomeButton icon='arrow-right' size={70} onPress={() => {
+                        <FontAwesomeButton icon={icon} size={70} onPress={() => {
                             const dataToSubmit = {
                                 "businesses": [{
                                     "b_no": number,
@@ -110,6 +95,7 @@ function EntrepreneurInfo(props) {
                                 console.log(dataToSubmit)
                                 props.checkEntrepreneurVaildate(dataToSubmit);
                             }
+                            setIcon('arrow-right')
                             navigation.navigate('StoreInfo')
                         }} />
                     </View>

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import { Alert } from "react-native";
-import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } from "../actions/actionTyps";
+import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } from "../actions/actionTypes";
 
 const initialState = {
     id: '',
@@ -10,7 +10,6 @@ const initialState = {
     store_name: '',
     store_phone: '',
     store_kind: '',
-    store_location: '',
     store_address: '',
     filename: '',
     loading: false
