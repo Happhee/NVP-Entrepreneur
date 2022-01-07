@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
+import { VERIFICATION_SMS_MESSAGE } from "../actions/actionTypes";
 
 const initialState = {
     id: '',
@@ -16,7 +17,8 @@ const initialState = {
 
 function authReducer(state = initialState, action) {
     switch (action.type) {
-
+        case VERIFICATION_SMS_MESSAGE:
+            return { ...state }
     }
     return { ...state }
 }

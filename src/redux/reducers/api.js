@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import { Alert } from "react-native";
-import { API_CHECK_ENTREPRENEUR_STATUS, API_CHECK_ENTREPRENEUR_STATUS_FAILURE, API_CHECK_ENTREPRENEUR_STATUS_SUCCESS, API_REQUEST } from "../actions/actionTyps";
+import { API_CHECK_ENTREPRENEUR_STATUS, API_CHECK_ENTREPRENEUR_STATUS_FAILURE, API_CHECK_ENTREPRENEUR_STATUS_SUCCESS, API_REQUEST } from "../actions/actionTypes";
 
 const initialState = {
     b_no: '',

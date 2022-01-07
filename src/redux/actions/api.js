@@ -1,6 +1,6 @@
 import apiInstance from "../../lib/apiInstance";
 import { API_STATUS_URL, API_VAILDATE_URL, SERVICE_KEY } from "../../lib/url";
-import { API_CHECK_ENTREPRENEUR_STATUS, API_CHECK_ENTREPRENEUR_STATUS_FAILURE, API_CHECK_ENTREPRENEUR_STATUS_SUCCESS, API_REQUEST } from "./actionTyps";
+import { API_CHECK_ENTREPRENEUR_STATUS, API_CHECK_ENTREPRENEUR_STATUS_FAILURE, API_CHECK_ENTREPRENEUR_STATUS_SUCCESS, API_REQUEST } from "./actionTypes";
 
 export const checkEntrepreneurStatus = (dataToSubmit) => {
     return (dispatch) => {
