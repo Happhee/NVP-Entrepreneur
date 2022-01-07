@@ -110,7 +110,7 @@ function EntrepreneurInfo(props) {
                                 console.log(dataToSubmit)
                                 props.checkEntrepreneurVaildate(dataToSubmit);
                             }
-                            // navigation.navigate('StoreInfo')
+                            navigation.navigate('StoreInfo')
                         }} />
                     </View>
 

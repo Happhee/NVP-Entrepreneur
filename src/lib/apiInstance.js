@@ -8,9 +8,6 @@ const apiInstance = axios.create({
 apiInstance.interceptors.request.use(
     //요청 보내기전 수행
     async config => {
-        console.log(config);
-
-
         return config;
     },
     //오류 요청
@@ -30,7 +27,7 @@ apiInstance.interceptors.response.use(
     // //200 이외 응답
     async function (err) {
         console.log('에러ㅓ')
-        // console.log(err.config);
+        console.log(err.config);
         console.log(err);
         //     const {
         //         config,
