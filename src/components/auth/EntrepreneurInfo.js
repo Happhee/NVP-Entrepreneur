@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput, Keyboard } from 'react-native';
+import { View, Text, Button, TextInput, Keyboard, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native';
 import authStyles from '../../assets/styles/auth';
 import Header from '../common/Header';
 import colors from '../../assets/colors/color';
 import { FooterButton, ConfirmButton, IconButton, FontAwesomeButton } from '../common/Button';
+import { isName } from '../../utils/regex';
+import { NOT_ENTREPRENEUR_NUMBER } from '../../redux/actions/actionTyps';
 
 function EntrepreneurInfo(props) {
     const [number, setNumber] = useState('');
-
+    const [startDate, setStartDate] = useState('');
+    const [name, setName] = useState('');
     const navigation = useNavigation();
     console.log(props)
 
@@ -25,7 +28,7 @@ function EntrepreneurInfo(props) {
                             keyboardType="number-pad"
                             maxLength={10}
                             placeholder="숫자 10자리"
-                            placeholderTextColor={colors.nvpRoot}
+                            placeholderTextColor={colors.nvpUnder}
                             secureTextEntry
                             onChangeText={(inputNumber) => {
                                 setNumber(inputNumber);
@@ -43,14 +46,11 @@ function EntrepreneurInfo(props) {
                         <Text style={authStyles.inputTitleText}>대표자  성명</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
-                            keyboardType="number-pad"
-                            placeholderTextColor={colors.nvpRoot}
-                            secureTextEntry
-                            onChangeText={(inputPassword) => {
-                                setPassword(inputPassword);
-                                if (inputPassword.length == 6) {
-                                    Keyboard.dismiss();
-                                }
+                            placeholderTextColor={colors.nvpUnder}
+                            placeholder="한글2-4자"
+                            onChangeText={(inputName) => {
+                                setName(inputName);
+
                             }}
                         />
                     </View>
@@ -59,11 +59,12 @@ function EntrepreneurInfo(props) {
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
-                            placeholderTextColor={colors.nvpRoot}
-                            secureTextEntry
-                            onChangeText={(inputPassword) => {
-                                setPassword(inputPassword);
-                                if (inputPassword.length == 6) {
+                            maxLength={8}
+                            placeholder="YYYYMMDD"
+                            placeholderTextColor={colors.nvpUnder}
+                            onChangeText={(inputStartDate) => {
+                                setStartDate(inputStartDate);
+                                if (inputStartDate.length == 8) {
                                     Keyboard.dismiss();
                                 }
                             }}
@@ -74,21 +75,42 @@ function EntrepreneurInfo(props) {
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
-                            placeholderTextColor={colors.nvpRoot}
-                            secureTextEntry
+                            placeholderTextColor={colors.nvpUnder}
                             onChangeText={(inputPassword) => {
-                                setPassword(inputPassword);
+                                setStartDate(inputPassword);
                                 if (inputPassword.length == 6) {
                                     Keyboard.dismiss();
                                 }
                             }}
                         />
+                        <ConfirmButton buttonText='찾기' onPress={() => {
+                            console.log('사업자 등록번호')
+                            props.checkEntrepreneurStatus({ b_no: [number] })
+                        }} />
                     </View>
                 </View>
                 <View style={authStyles.nextButtonView}>
                     <View style={authStyles.loginButtonView}>
                         <FontAwesomeButton icon='arrow-right' size={70} onPress={() => {
-                            navigation.navigate('StoreInfo')
+                            const dataToSubmit = {
+                                "businesses": [{
+                                    "b_no": number,
+                                    "start_dt": startDate,
+                                    "p_nm": name,
+                                }]
+                            }
+                            // if (props.api.message === NOT_ENTREPRENEUR_NUMBER) {
+                            //     Alert.alert('사업자 인증을 먼저 해주세요')
+                            // } else 
+                            if (!isName(name)) {
+                                Alert.alert('이름을 정확하게 입력해주세요')
+                            } else if (startDate.length != 8) {
+                                Alert.alert('개업일자를 형식에 맞춰 입력해주세요')
+                            } else {
+                                console.log(dataToSubmit)
+                                props.checkEntrepreneurVaildate(dataToSubmit);
+                            }
+                            // navigation.navigate('StoreInfo')
                         }} />
                     </View>
 
