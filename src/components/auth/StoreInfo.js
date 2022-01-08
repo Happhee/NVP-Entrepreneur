@@ -8,13 +8,22 @@ import colors from '../../assets/colors/color';
 import { FooterButton, ConfirmButton, IconButton, FontAwesomeButton } from '../common/Button';
 import { isPhoneNumber } from '../../utils/regex';
 import { MESSAGE_TIME_OUT, NO_EXIST_MESSAGE } from '../../redux/actions/actionTypes';
+import DaumPostcode from 'react-daum-postcode';
 const padNumber = (num, length) => {
     return String(num).padStart(length, '0');
 };
+
+const postCodeStyle = {
+    display: 'block',
+    position: 'relative',
+    top: '0%',
+    width: '400px',
+    height: '400px',
+    padding: '7px',
+}
 function StoreInfo(props) {
     const [storeName, setStoreName] = useState('');
     const [storePhone, setStorePhone] = useState('');
-    const [address, setAddress] = useState('')
     const [message, setMessage] = useState(NO_EXIST_MESSAGE)
     const [successMessage, setSuccessMessage] = useState(true);
     const [icon, setIcon] = useState('remove')
@@ -26,7 +35,7 @@ function StoreInfo(props) {
     const timerId = useRef(null);
 
 
-    // console.log(props.auth);
+    console.log(props.address);
     console.log(props.sms);
 
     const startTimer = () => {
@@ -54,11 +63,15 @@ function StoreInfo(props) {
         }
     }, [sec]);
 
+
+    const [address, setAddress] = useState('')
+
+
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
                 <Header title="NVP" subTitle="가게 정보 입력" />
-                <View style={authStyles.inputRoot}>
+                <View style={authStyles.storeInfoRoot}>
 
                     <View style={authStyles.inputView}>
                         <Text style={authStyles.inputTitleText}>상호명</Text>
@@ -71,18 +84,27 @@ function StoreInfo(props) {
                     </View>
                     <View style={authStyles.inputView}>
                         <Text style={authStyles.inputTitleText}>사업장   주소</Text>
-                        <TextInput
-                            style={authStyles.inputTextInput}
-                            placeholderTextColor={colors.nvpUnder}
-                            onChangeText={(input) => {
-                                setAddress(input);
 
-                            }}
-                        />
+                        <Text style={authStyles.inputTextInput}>우편번호 [{props.address.postcode}] </Text>
+
+
+
+
                         <ConfirmButton buttonText='찾기' onPress={() => {
+                            navigation.navigate('SearchAddress')
                         }} />
                     </View>
 
+                    <View style={authStyles.inputView}>
+                        <Text style={authStyles.inputTitleText}></Text>
+
+                        <Text style={authStyles.inputTextInput}>{props.address.addr}</Text>
+                    </View>
+                    <View style={authStyles.inputView}>
+                        <Text style={authStyles.inputTitleText}></Text>
+
+                        <Text style={authStyles.inputTextInput}>{props.address.extraAddr}</Text>
+                    </View>
                     <View style={authStyles.inputView}>
                         <Text style={authStyles.inputTitleText}>사업자  전화번호</Text>
                         <TextInput
