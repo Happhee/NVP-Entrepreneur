@@ -10,11 +10,16 @@ const authStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-around'
     },
+    storeInfoRoot: {
+        flex: 1.6,
+        justifyContent: 'space-around'
+    },
     inputView: {
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 20,
+        // flex: 3
 
     },
     inputTitleText: {
@@ -110,7 +115,8 @@ const authStyles = StyleSheet.create({
         fontFamily: 'DoHyeon-Regular',
         fontSize: 30,
         textAlign: 'center'
-    }
+    },
+
 
 });
 

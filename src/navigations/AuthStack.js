@@ -7,6 +7,7 @@ import FindIdScreen from '../screens/AuthStack/FindId';
 import FindPasswordScreen from '../screens/AuthStack/FindPassword';
 import StoreInfoScreen from '../screens/AuthStack/StoreInfo';
 import IdPasswordScreen from '../screens/AuthStack/IdPassword';
+import SearchAddressScreen from '../screens/AuthStack/SearchAddress';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const AuthStackScreen = () => {
                     title: '',
                     headerBackTitleVisible: false
                 }} />
+            <Stack.Screen name="SearchAddress" component={SearchAddressScreen} />
             <Stack.Screen name='ChoiceIdPassword' component={ChoiceIdPasswordScreen}
                 options={{
                     title: '',

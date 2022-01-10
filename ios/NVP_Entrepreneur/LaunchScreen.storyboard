@@ -21,7 +21,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" red="0.0" green="0.7252796292" blue="0.57029992340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="OMz-aP-6CP" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="6JM-V6-3bQ"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="OMz-aP-6CP" secondAttribute="bottom" id="7xX-hf-rbO"/>
@@ -36,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SplashIcon" width="256" height="256"/>
+        <image name="SplashIcon" width="512" height="512"/>
     </resources>
 </document>
