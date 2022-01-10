@@ -31,7 +31,6 @@ function EntrepreneurInfo(props) {
                             maxLength={10}
                             placeholder="숫자 10자리"
                             placeholderTextColor={colors.nvpUnder}
-                            secureTextEntry
                             onChangeText={(inputNumber) => {
                                 setNumber(inputNumber);
                                 if (inputNumber.length == 10) {
@@ -71,6 +70,11 @@ function EntrepreneurInfo(props) {
                                 }
                             }}
                         />
+                    </View>
+                    <View style={authStyles.buttonView}>
+                        <ConfirmButton buttonText='사업자 등록증 촬영하기' onPress={() => {
+                            navigation.navigate('BusinessLicense')
+                        }} />
                     </View>
 
                 </View>

@@ -44,7 +44,7 @@ const SearchAddress = (props) => {
                         // setExtraAddr(data.jibunAddress);
                         props.address.extraAddr = data.jibunAddress;
                     }
-                    navigation.navigate('StoreInfo');
+                    // navigation.navigate('StoreInfo');
 
                 }}
             />
