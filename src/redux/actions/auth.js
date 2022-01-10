@@ -1,6 +1,7 @@
-import { CHECK_DUPLICATE_ID, CHECK_DUPLICATE_ID_FAILURE, CHECK_DUPLICATE_ID_SUCCESS, SET_BUSINESS_LICENSE, SIGN_UP, SIGN_UP_FAILURE, SIGN_UP_SUCCESS, VERIFICATION_SMS_MESSAGE } from "./actionTypes";
+import { CHECK_DUPLICATE_ID, CHECK_DUPLICATE_ID_FAILURE, CHECK_DUPLICATE_ID_SUCCESS, SET_BUSINESS_LICENSE, SET_ENTREPRENEUR_INFO, SET_PASSWORD, SET_STORE_INFO, SIGN_UP, SIGN_UP_FAILURE, SIGN_UP_SUCCESS, VERIFICATION_SMS_MESSAGE } from "./actionTypes";
 import axiosInstance from "../../lib/axiosInstance";
 import { CHECK_ID_URL, ENTREPRENEUR_URL, SIGN_UP_URL } from "../../lib/url";
+
 //인증 성공
 export function verifySmsMessage(dataToSubmit) {
     return {
@@ -8,7 +9,18 @@ export function verifySmsMessage(dataToSubmit) {
         data: dataToSubmit,
     }
 }
-
+export const setEntrepreneurInfo = (dataToSubmit) => {
+    return {
+        type: SET_ENTREPRENEUR_INFO,
+        data: dataToSubmit
+    }
+}
+export const setStoreInfo = (dataToSubmit) => {
+    return {
+        type: SET_STORE_INFO,
+        data: dataToSubmit
+    }
+}
 export function setBusinessLicense(dataToSubmit) {
     return {
         type: SET_BUSINESS_LICENSE,
@@ -21,7 +33,7 @@ export const checkDuplicateId = (dataToSubmit) => {
     console.log(dataToSubmit);
     return (dispatch) => {
         dispatch(checkDuplicateIdRequest())
-        axiosInstance.get(ENTREPRENEUR_URL + CHECK_ID_URL, dataToSubmit)
+        axiosInstance.post(ENTREPRENEUR_URL + CHECK_ID_URL, dataToSubmit)
             .then((res) => {
                 dispatch(checkDuplicateIdSuccess(dataToSubmit))
             })
@@ -48,13 +60,18 @@ const checkDuplicateIdFailure = (err) => {
         err: err
     }
 }
-
+export const setPassword = (dataToSubmit) => {
+    return {
+        type: SET_PASSWORD,
+        data: dataToSubmit
+    }
+}
 
 export const signup = (dataToSubmit) => {
     return (dispatch) => {
         console.log('회원가입 요청');
         dispatch(signupRequest())
-        axiosInstance.post(SIGN_UP_URL, dataToSubmit)
+        axiosInstance.post(ENTREPRENEUR_URL + SIGN_UP_URL, dataToSubmit)
             .then((res) => {
                 const token = res.data;
                 dispatch(signupSuccess(dataToSubmit, token));
@@ -65,6 +82,8 @@ export const signup = (dataToSubmit) => {
     }
 
 }
+
+
 
 
 export const signupRequest = (dataToSubmit) => {

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, Button, TextInput, Alert, Keyboard } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native';
 import authStyles from '../../assets/styles/auth';
 import Header from '../common/Header';
@@ -27,14 +27,15 @@ function StoreInfo(props) {
     const [sec, setSec] = useState(padNumber(0, 2));
     const time = useRef(180);
     const timerId = useRef(null);
+    const route = useRoute();
+
     useEffect(() => {
         setAddress(true);
         console.log(
             '재렌더링'
         )
-    }, [props.address.addr])
-
-    // console.log(props.address);
+    }, [route.params.address[0]])
+    console.log(props.address);
     // console.log(props.sms);
 
     const startTimer = () => {
@@ -174,6 +175,11 @@ function StoreInfo(props) {
                 <View style={authStyles.nextButtonView}>
                     <View style={authStyles.loginButtonView}>
                         <FontAwesomeButton icon={icon} size={70} onPress={() => {
+                            props.setStoreInfo({
+                                store_name: storeName,
+                                store_address: '[' + props.address.postcode + ']' + props.address.addr + props.address.extraAddr,
+                                store_phone: storePhone
+                            })
                             navigation.navigate('IdPassword')
                         }} />
                     </View>

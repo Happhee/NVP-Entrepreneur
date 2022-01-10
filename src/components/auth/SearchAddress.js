@@ -43,8 +43,12 @@ const SearchAddress = (props) => {
                         // 사용자가 지번 주소를 선택했을 경우(J)
                         // setExtraAddr(data.jibunAddress);
                         props.address.extraAddr = data.jibunAddress;
+                        navigation.navigate('StoreInfo', { address: true });
+
                     }
                     // navigation.navigate('StoreInfo');
+                    navigation.navigate('StoreInfo', { address: true });
+
 
                 }}
             />

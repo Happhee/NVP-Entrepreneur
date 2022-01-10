@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput, Alert } from 'react-native';
+import { View, Text, Button, TextInput, Alert, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native';
 import authStyles from '../../assets/styles/auth';
@@ -14,6 +14,7 @@ function IdPassword(props) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [successPassword, setSuccessPassword] = useState(false);
     const navigation = useNavigation();
+    console.log(props.auth)
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
@@ -75,7 +76,10 @@ function IdPassword(props) {
                             if (password === confirmPassword) {
                                 Alert.alert('비밀번호 설정이 완료되었습니다')
                                 setSuccessPassword(true);
-                                props.setPassword(password);
+                                props.setPassword({ password: password });
+                                if (props.auth.id) {
+                                    setSignUpIcon('check');
+                                }
                                 // props.navigation.navigate('CheckCertificate')
                             }
                             else {
@@ -89,6 +93,21 @@ function IdPassword(props) {
                 <View style={authStyles.nextButtonView}>
                     <View style={authStyles.loginButtonView}>
                         <FontAwesomeButton icon={signupIcon} size={70} onPress={() => {
+                            console.log(signupIcon)
+                            if (signupIcon === 'check') {
+                                const dataToSubmit = {
+                                    id: props.auth.id,
+                                    name: props.auth.name,
+                                    password: props.auth.password,
+                                    store_num: props.auth.store_num,
+                                    store_name: props.auth.store_name,
+                                    store_phone: props.auth.store_phone,
+                                    store_kind: props.auth.store_date,
+                                    store_address: props.auth.store_address,
+                                    filename: props.auth.filename
+                                }
+                                props.signup(dataToSubmit)
+                            }
                             navigation.navigate('Login')
                         }} />
                     </View>

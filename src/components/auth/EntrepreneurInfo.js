@@ -16,7 +16,7 @@ function EntrepreneurInfo(props) {
     const [icon, setIcon] = useState('remove')
 
     const navigation = useNavigation();
-    console.log(props)
+    console.log(props.auth)
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
@@ -100,7 +100,12 @@ function EntrepreneurInfo(props) {
                                 props.checkEntrepreneurVaildate(dataToSubmit);
                             }
                             setIcon('arrow-right')
-                            navigation.navigate('StoreInfo')
+                            props.setEntrepreneurInfo({
+                                store_num: number,
+                                name: name,
+                                store_date: startDate
+                            })
+                            navigation.navigate('StoreInfo', { address: true })
                         }} />
                     </View>
 
