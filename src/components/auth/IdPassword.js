@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput } from 'react-native';
+import { View, Text, Button, TextInput, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native';
 import authStyles from '../../assets/styles/auth';
@@ -9,6 +9,10 @@ import { FooterButton, ConfirmButton, IconButton, FontAwesomeButton } from '../c
 
 function IdPassword(props) {
     const [signupIcon, setSignUpIcon] = useState('close');
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [successPassword, setSuccessPassword] = useState(false);
     const navigation = useNavigation();
 
     return (
@@ -21,18 +25,14 @@ function IdPassword(props) {
                         <Text style={authStyles.inputTitleText}>아이디</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
-                            keyboardType="number-pad"
                             placeholderTextColor={colors.nvpRoot}
-                            secureTextEntry
-                            onChangeText={(inputPassword) => {
-                                setPassword(inputPassword);
-                                if (inputPassword.length == 6) {
-                                    Keyboard.dismiss();
-                                }
+                            onChangeText={(inputId) => {
+                                setId(inputId);
+
                             }}
                         />
                         <ConfirmButton buttonText='검사' onPress={() => {
-                            console.log('사업자 등록번호')
+                            props.checkDuplicateId({ id: id })
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
@@ -49,8 +49,13 @@ function IdPassword(props) {
                                 }
                             }}
                         />
-                        <ConfirmButton buttonText='확인' onPress={() => {
-                            console.log('사업자 등록번호')
+                        <ConfirmButton buttonText='설정' onPress={() => {
+                            if (password.length === 6) {
+                                Alert.alert('간편번호 확인을 진행해주세요')
+                            }
+                            else {
+                                Alert.alert('간편번호는 6자리로 입력해주세요')
+                            }
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
@@ -61,14 +66,21 @@ function IdPassword(props) {
                             placeholderTextColor={colors.nvpRoot}
                             secureTextEntry
                             onChangeText={(inputPassword) => {
-                                setPassword(inputPassword);
-                                if (inputPassword.length == 6) {
-                                    Keyboard.dismiss();
-                                }
+                                setConfirmPassword(inputPassword);
+
                             }}
                         />
                         <ConfirmButton buttonText='확인' onPress={() => {
-                            console.log('사업자 등록번호')
+                            Keyboard.dismiss();
+                            if (password === confirmPassword) {
+                                Alert.alert('비밀번호 설정이 완료되었습니다')
+                                setSuccessPassword(true);
+                                props.setPassword(password);
+                                // props.navigation.navigate('CheckCertificate')
+                            }
+                            else {
+                                Alert.alert('간편번호가 다릅니다!!')
+                            }
                         }} />
                     </View>
 
