@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import StoreInfo from "../../components/auth/StoreInfo";
-import { verifySmsMessage } from "../../redux/actions/auth";
+import { setStoreInfo, verifySmsMessage } from "../../redux/actions/auth";
 import { expireMessage, postMessage } from "../../redux/actions/sms";
 function mapReduxStateToReactProps(state) {
     return state;
@@ -16,6 +16,9 @@ function mapReduxDispatchToReactProps(dispatch) {
         },
         verifyMessage: function (dataToSubmit) {
             dispatch(verifySmsMessage(dataToSubmit));
+        },
+        setStoreInfo: function (dataToSubmit) {
+            dispatch(setStoreInfo(dataToSubmit));
         }
     }
 }
