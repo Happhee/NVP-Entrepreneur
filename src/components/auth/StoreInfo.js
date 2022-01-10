@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, Button, TextInput, Alert, Keyboard } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native';
 import authStyles from '../../assets/styles/auth';
 import Header from '../common/Header';
@@ -13,19 +13,13 @@ const padNumber = (num, length) => {
     return String(num).padStart(length, '0');
 };
 
-const postCodeStyle = {
-    display: 'block',
-    position: 'relative',
-    top: '0%',
-    width: '400px',
-    height: '400px',
-    padding: '7px',
-}
 function StoreInfo(props) {
     const [storeName, setStoreName] = useState('');
     const [storePhone, setStorePhone] = useState('');
     const [message, setMessage] = useState(NO_EXIST_MESSAGE)
     const [successMessage, setSuccessMessage] = useState(true);
+    const [address, setAddress] = useState(false)
+
     const [icon, setIcon] = useState('remove')
     const navigation = useNavigation();
     // 타이머를 초단위로 변환한 initialTime과 setInterval을 저장할 interval ref
@@ -33,10 +27,16 @@ function StoreInfo(props) {
     const [sec, setSec] = useState(padNumber(0, 2));
     const time = useRef(180);
     const timerId = useRef(null);
+    const route = useRoute();
 
-
+    useEffect(() => {
+        setAddress(true);
+        console.log(
+            '재렌더링'
+        )
+    }, [route.params.address[0]])
     console.log(props.address);
-    console.log(props.sms);
+    // console.log(props.sms);
 
     const startTimer = () => {
         clearInterval(timerId.current);
@@ -64,7 +64,6 @@ function StoreInfo(props) {
     }, [sec]);
 
 
-    const [address, setAddress] = useState('')
 
 
     return (
@@ -176,6 +175,11 @@ function StoreInfo(props) {
                 <View style={authStyles.nextButtonView}>
                     <View style={authStyles.loginButtonView}>
                         <FontAwesomeButton icon={icon} size={70} onPress={() => {
+                            props.setStoreInfo({
+                                store_name: storeName,
+                                store_address: '[' + props.address.postcode + ']' + props.address.addr + props.address.extraAddr,
+                                store_phone: storePhone
+                            })
                             navigation.navigate('IdPassword')
                         }} />
                     </View>

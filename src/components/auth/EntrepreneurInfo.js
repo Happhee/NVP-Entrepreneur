@@ -16,7 +16,7 @@ function EntrepreneurInfo(props) {
     const [icon, setIcon] = useState('remove')
 
     const navigation = useNavigation();
-    console.log(props)
+    console.log(props.auth)
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
@@ -31,7 +31,6 @@ function EntrepreneurInfo(props) {
                             maxLength={10}
                             placeholder="숫자 10자리"
                             placeholderTextColor={colors.nvpUnder}
-                            secureTextEntry
                             onChangeText={(inputNumber) => {
                                 setNumber(inputNumber);
                                 if (inputNumber.length == 10) {
@@ -72,6 +71,11 @@ function EntrepreneurInfo(props) {
                             }}
                         />
                     </View>
+                    <View style={authStyles.buttonView}>
+                        <ConfirmButton buttonText='사업자 등록증 촬영하기' onPress={() => {
+                            navigation.navigate('BusinessLicense')
+                        }} />
+                    </View>
 
                 </View>
                 <View style={authStyles.nextButtonView}>
@@ -96,7 +100,12 @@ function EntrepreneurInfo(props) {
                                 props.checkEntrepreneurVaildate(dataToSubmit);
                             }
                             setIcon('arrow-right')
-                            navigation.navigate('StoreInfo')
+                            props.setEntrepreneurInfo({
+                                store_num: number,
+                                name: name,
+                                store_date: startDate
+                            })
+                            navigation.navigate('StoreInfo', { address: true })
                         }} />
                     </View>
 

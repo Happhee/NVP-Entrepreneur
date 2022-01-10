@@ -29,14 +29,13 @@ axiosInstance.interceptors.response.use(
     //200대 응답 
     async function (res) {
         console.log('응답')
-        console.log(res);
+        // console.log(res);
         return res
     },
     // //200 이외 응답
     async function (err) {
         console.log('에러ㅓ')
         console.log(err.config);
-        console.log(err);
         //     const {
         //         config,
         //         res: { status },

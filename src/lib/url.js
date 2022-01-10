@@ -7,6 +7,7 @@ export const PROFILE_URL = "/profile";
 export const REFRESH_URL = "/refresh";
 export const UPLOAD_URL = "/upload";
 export const SMS_URL = '/sms/check';
+export const CHECK_ID_URL = "/check";
 
 
 export const API_BASE_URL = "https://api.odcloud.kr/api/nts-businessman/v1";

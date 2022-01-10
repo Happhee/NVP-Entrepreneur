@@ -30,6 +30,11 @@ const authStyles = StyleSheet.create({
         padding: 5,
         textAlign: 'center'
     },
+    buttonView: {
+        marginBottom: 20,
+        width: '100%',
+        alignItems: 'center'
+    },
     inputTextInput: {
         backgroundColor: colors.signUpInput,
         fontSize: 23,

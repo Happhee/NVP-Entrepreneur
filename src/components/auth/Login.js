@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TextInput, Keyboard } from 'react-native';
 import colors from '../../assets/colors/color';
 import authStyles from '../../assets/styles/auth';
@@ -12,6 +12,11 @@ function Login(props) {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
+    useEffect(() => {
+        if (props.entrepreneur.id) {
+            navigation.navigate('Main')
+        }
+    })
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
@@ -53,7 +58,7 @@ function Login(props) {
                         <IconButton icon='login' onPress={() => {
                             console.log('로그인요청')
                             props.login({ id: id, password: password })
-                            navigation.navigate('Main')
+
                         }} />
                     </View>
 
