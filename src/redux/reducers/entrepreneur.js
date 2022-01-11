@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import { Alert } from "react-native";
-import { AUTO_LOGIN, AUTO_LOGIN_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT } from "../actions/actionTypes";
+import { AUTO_LOGIN, AUTO_LOGIN_FAILURE, AUTO_LOGIN_SUCCESS, DELETE_ENTREPRENEUR, DELETE_ENTREPRENEUR_FAILURE, DELETE_ENTREPRENEUR_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT } from "../actions/actionTypes";
 
 const initialState = {
     id: '',
@@ -18,6 +18,7 @@ function entrepreneurReducer(state = initialState, action) {
     switch (action.type) {
         case LOGIN:
         case AUTO_LOGIN:
+        case DELETE_ENTREPRENEUR:
             return {
                 ...state,
                 loading: true,
@@ -34,12 +35,16 @@ function entrepreneurReducer(state = initialState, action) {
                 ...state,
                 id: action.data.id,
                 password: action.data.password,
-                loading: true
+                loading: false
             }
 
         case LOGIN_FAILURE:
-            Alert.alert('로그인에 실패하였습니다')
-            return initialState;
+        case AUTO_LOGIN_FAILURE:
+            Alert.alert('❌ 로그인에 실패하였습니다 ❌')
+            return {
+                ...state,
+                loading: false
+            };
 
         case AUTO_LOGIN_SUCCESS:
             return {
@@ -52,10 +57,12 @@ function entrepreneurReducer(state = initialState, action) {
                 store_kind: action.payload.store_kind,
                 store_address: action.payload.store_address,
                 filename: action.payload.filename,
+                loading: false
             }
 
         case LOGOUT:
             AsyncStorage.clear();
+            Alert.alert('⭐️ 로그아웃 되었습니다 ⭐️')
             return {
                 ...state,
                 id: '',
@@ -67,6 +74,31 @@ function entrepreneurReducer(state = initialState, action) {
                 store_address: '',
                 filename: '',
             }
+
+        case DELETE_ENTREPRENEUR_SUCCESS:
+            AsyncStorage.clear();
+            Alert.alert('⭐️ 회원탈퇴 되었습니다 ⭐️')
+
+            return {
+                ...state,
+                id: '',
+                name: '',
+                store_num: '',
+                store_name: '',
+                store_phone: '',
+                store_kind: '',
+                store_address: '',
+                filename: '',
+                loading: false
+            }
+
+        case DELETE_ENTREPRENEUR_FAILURE:
+            Alert.alert('❌ 회원탈퇴에 실패하였습니다 ❌')
+            return {
+                ...state,
+                loading: false
+
+            };
     }
     return { ...state }
 }
