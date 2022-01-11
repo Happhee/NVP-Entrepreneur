@@ -9,12 +9,12 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
     //요청 보내기전 수행
     async config => {
-        console.log(config);
         const refreshToken = await AsyncStorage.getItem('refreshToken');
         if (refreshToken) {
             config.headers['Authorization'] = `Bearer ${refreshToken}`
 
         }
+
 
         return config;
     },
@@ -33,9 +33,12 @@ axiosInstance.interceptors.response.use(
         return res
     },
     // //200 이외 응답
-    async function (err) {
+    async (err) => {
         console.log('에러ㅓ')
-        console.log(err.config);
+        console.log(err.response.data)
+
+        // console.log(err);
+        // console.log(err.config);
         //     const {
         //         config,
         //         res: { status },

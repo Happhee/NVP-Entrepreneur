@@ -1,7 +1,7 @@
 import axiosInstance from "../../lib/axiosInstance";
-import { ENTREPRENEUR_URL, UPLOAD_URL } from "../../lib/url";
+import { ENTREPRENEUR_URL, PROFILE_URL, UPLOAD_URL } from "../../lib/url";
 
-import { CERTIFICATE_UPLOAD, CERTIFICATE_UPLOAD_FAILURE, CERTIFICATE_UPLOAD_SUCCESS, DOWNLOAD_CERTIFICATE, DOWNLOAD_CERTIFICATE_FAILURE, DOWNLOAD_CERTIFICATE_SUCCESS } from "./actionTypes";
+import { CERTIFICATE_UPLOAD, CERTIFICATE_UPLOAD_FAILURE, CERTIFICATE_UPLOAD_SUCCESS, DOWNLOAD_CERTIFICATE, DOWNLOAD_CERTIFICATE_FAILURE, DOWNLOAD_CERTIFICATE_SUCCESS, RESET_PASSWORD, RESET_PASSWORD_FAILURE, RESET_PASSWORD_SUCCESS } from "./actionTypes";
 
 const CERTIFICATE_URL = '/certificate';
 
@@ -46,46 +46,39 @@ export const uploadCertificateFailure = (err) => {
     }
 }
 
-export const downLoadCertificate = (dataToSubmit) => {
-    console.log('파일 다운로드')
-    console.log(dataToSubmit);
-    const config = {
-        headers: { 'Access-Control-Allow-Origin': '*' }
-    };
-    return (dispatch) => {
-        dispatch(downLoadCertificateRequest())
-        axiosInstance.get(CERTIFICATE_URL + '/download', { data: dataToSubmit }, config)
-            .then((res) => {
-                console.log(res.data);
-                console.log('파일 다운로드 하기 성공')
 
-                dispatch(downLoadCertificateSuccess(res))
+
+
+
+export const resetPassword = (dataToSubmit) => {
+    return (dispatch) => {
+        dispatch(resetPasswordRequest())
+        axiosInstance.patch(ENTREPRENEUR_URL + PROFILE_URL, dataToSubmit)
+            .then((res) => {
+                console.log('비빌번호 재설정완료')
+                dispatch(resetPasswordSuccess(dataToSubmit))
             })
             .catch((err) => {
-                console.log('파일 다운로드 실패')
-                console.log(err);
-
-                dispatch(downLoadCertificateFailure(err));
+                dispatch(resetPasswordFailure(err))
             })
-
     }
 }
 
-export const downLoadCertificateRequest = () => {
+const resetPasswordRequest = () => {
     return {
-        type: DOWNLOAD_CERTIFICATE
-    };
+        type: RESET_PASSWORD
+    }
 }
-export const downLoadCertificateSuccess = (data) => {
+const resetPasswordSuccess = (dataToSubmit) => {
     return {
-        type: DOWNLOAD_CERTIFICATE_SUCCESS,
-        payload: data
+        type: RESET_PASSWORD_SUCCESS,
+        data: dataToSubmit,
     }
 }
 
-export const downLoadCertificateFailure = (err) => {
+const resetPasswordFailure = (err) => {
     return {
-        type: DOWNLOAD_CERTIFICATE_FAILURE,
+        type: RESET_PASSWORD_FAILURE,
         err: err
     }
 }

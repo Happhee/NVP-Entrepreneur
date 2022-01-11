@@ -7,37 +7,22 @@ import Header from '../common/Header';
 import colors from '../../assets/colors/color';
 import { FooterButton, ConfirmButton, IconButton, FontAwesomeButton } from '../common/Button';
 
-function IdPassword(props) {
+function SetPassword(props) {
     const [signupIcon, setSignUpIcon] = useState('close');
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [successPassword, setSuccessPassword] = useState(false);
     const navigation = useNavigation();
-    console.log(props.auth)
+
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
-                <Header title="NVP" subTitle="ID/PW 생성" />
+                <Header title="NVP" subTitle="PW 재설정" />
                 <View style={authStyles.inputRoot}>
-
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>아이디</Text>
-                        <TextInput
-                            style={authStyles.inputTextInput}
-                            placeholderTextColor={colors.nvpRoot}
-                            onChangeText={(inputId) => {
-                                setId(inputId);
-
-                            }}
-                        />
-                        <ConfirmButton buttonText='검사' onPress={() => {
-                            props.checkDuplicateId({ id: id })
-                        }} />
-                    </View>
-                    <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>비밀번호</Text>
+                        <Text style={authStyles.inputTitleText}>새로운   비밀번호</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
@@ -60,7 +45,7 @@ function IdPassword(props) {
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>비밀번호 확인</Text>
+                        <Text style={authStyles.inputTitleText}>새로운   비밀번호 확인</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
@@ -76,11 +61,7 @@ function IdPassword(props) {
                             if (password === confirmPassword) {
                                 Alert.alert('비밀번호 설정이 완료되었습니다')
                                 setSuccessPassword(true);
-                                props.setPassword({ password: password });
-                                if (props.auth.id) {
-                                    setSignUpIcon('check');
-                                }
-                                // props.navigation.navigate('CheckCertificate')
+                                setSignUpIcon('check');
                             }
                             else {
                                 Alert.alert('간편번호가 다릅니다!!')
@@ -93,32 +74,8 @@ function IdPassword(props) {
                 <View style={authStyles.nextButtonView}>
                     <View style={authStyles.loginButtonView}>
                         <FontAwesomeButton icon={signupIcon} size={70} onPress={() => {
-                            console.log(signupIcon)
-                            if (signupIcon === 'check') {
-                                const dataToSubmit = {
-                                    id: props.auth.id,
-                                    name: props.auth.name,
-                                    password: props.auth.password,
-                                    store_num: props.auth.store_num,
-                                    store_name: props.auth.store_name,
-                                    store_phone: props.auth.store_phone,
-                                    phone: props.auth.store_phone,
-                                    store_kind: props.auth.store_date,
-                                    store_address: props.auth.store_address,
-                                    filename: props.auth.filename
-                                }
-                                props.signup(dataToSubmit)
-                                const formData = new FormData();
-                                console.log(formData);
-                                const photo = {
-                                    uri: props.auth.filepath,
-                                    type: 'multipart/form-data',
-                                    name: `${props.auth.filename}`
-                                }
-                                formData.append('image', photo);
-                                props.uploadCertificate(formData)
-                            }
-                            navigation.navigate('Login')
+                            props.setPassword(password);
+
                         }} />
                     </View>
                 </View>
@@ -126,4 +83,4 @@ function IdPassword(props) {
         </TouchableWithoutFeedback>
     )
 }
-export default IdPassword;
+export default SetPassword;

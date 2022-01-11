@@ -1,4 +1,4 @@
-import { AUTO_LOGIN, AUTO_LOGIN_FAILURE, AUTO_LOGIN_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT } from "../actions/actionTypes";
+import { AUTO_LOGIN, AUTO_LOGIN_FAILURE, AUTO_LOGIN_SUCCESS, DELETE_ENTREPRENEUR, DELETE_ENTREPRENEUR_FAILURE, DELETE_ENTREPRENEUR_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT } from "../actions/actionTypes";
 import axiosInstance from "../../lib/axiosInstance";
 import { ENTREPRENEUR_URL, LOGIN_URL, PROFILE_URL } from "../../lib/url";
 export const login = (dataToSubmit) => {
@@ -50,7 +50,7 @@ export const autoLogin = (dataToSubmit) => {
                 dispatch(autoLoginSuccess(res.data.data, dataToSubmit))
             })
             .catch(err => {
-                dispatch(autoLoginFailure(err))
+                dispatch(autoLoginFailure(err.response.data.message))
             })
     }
 }
@@ -80,4 +80,47 @@ const autoLoginFailure = (err) => {
 
 export const logout = () => {
     return { type: LOGOUT }
+}
+
+
+
+export const deleteEntrepreneur = (dataToSubmit) => {
+    return (dispatch) => {
+        console.log('회원삭제');
+        dispatch(deleteEntrepreneurRequest())
+        console.log(dataToSubmit);
+
+        axiosInstance.delete(ENTREPRENEUR_URL, { data: dataToSubmit })
+            .then((res) => {
+                console.log('회원삭제성공');
+
+                dispatch(deleteEntrepreneurSuccess())
+            })
+            .catch((err) => {
+                console.log('회원삭제실패');
+
+                dispatch(deleteEntrepreneurFailure(err))
+            })
+    }
+}
+
+export const deleteEntrepreneurRequest = () => {
+    return {
+        type: DELETE_ENTREPRENEUR
+    }
+}
+
+export const deleteEntrepreneurSuccess = () => {
+    console.log('회원삭제성공');
+
+    return {
+        type: DELETE_ENTREPRENEUR_SUCCESS
+    }
+}
+
+export const deleteEntrepreneurFailure = (err) => {
+    return {
+        type: DELETE_ENTREPRENEUR_FAILURE,
+        message: err
+    }
 }

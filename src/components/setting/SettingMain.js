@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 function SettingMain(props) {
     const navigation = useNavigation();
+    console.log(props.entrepreneur);
     return (
 
         <View style={settingStyles.container}>
@@ -22,9 +23,9 @@ function SettingMain(props) {
 
 
             <View style={settingStyles.content}
-                onTouchStart={() => navigation.navigate()} >
+                onTouchStart={() => navigation.navigate('ResetPassword')} >
 
-                <Text style={settingStyles.contentFont}>비밀번호 설정</Text>
+                <Text style={settingStyles.contentFont}>비밀번호 재설정</Text>
 
             </View>
             <View style={settingStyles.content}

@@ -36,7 +36,7 @@ function StoreInfo(props) {
         )
     }, [route.params.address[0]])
     console.log(props.address);
-    // console.log(props.sms);
+    console.log(props.sms);
 
     const startTimer = () => {
         clearInterval(timerId.current);

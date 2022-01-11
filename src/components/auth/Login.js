@@ -14,9 +14,11 @@ function Login(props) {
 
     useEffect(() => {
         if (props.entrepreneur.id) {
+            props.getProfile({ id: props.entrepreneur.id })
             navigation.navigate('Main')
         }
-    })
+    }, [props.entrepreneur.id])
+
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
@@ -57,6 +59,7 @@ function Login(props) {
                     <View style={authStyles.loginButtonView}>
                         <IconButton icon='login' onPress={() => {
                             console.log('로그인요청')
+                            console.log(id)
                             props.login({ id: id, password: password })
 
                         }} />
