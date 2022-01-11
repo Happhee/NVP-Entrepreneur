@@ -50,7 +50,7 @@ export const autoLogin = (dataToSubmit) => {
                 dispatch(autoLoginSuccess(res.data.data, dataToSubmit))
             })
             .catch(err => {
-                dispatch(autoLoginFailure(err))
+                dispatch(autoLoginFailure(err.response.data.message))
             })
     }
 }
@@ -120,6 +120,7 @@ export const deleteEntrepreneurSuccess = () => {
 
 export const deleteEntrepreneurFailure = (err) => {
     return {
-        type: DELETE_ENTREPRENEUR_FAILURE
+        type: DELETE_ENTREPRENEUR_FAILURE,
+        message: err
     }
 }
