@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import { CHECK_DUPLICATE_ID, CHECK_DUPLICATE_ID_FAILURE, CHECK_DUPLICATE_ID_SUCCESS, SET_BUSINESS_LICENSE, SET_ENTREPRENEUR_INFO, SET_PASSWORD, SET_STORE_INFO, SIGN_UP, SIGN_UP_SUCCESS, VERIFICATION_SMS_MESSAGE } from "../actions/actionTypes";
+import { Alert } from "react-native";
+import { CHECK_DUPLICATE_ID, CHECK_DUPLICATE_ID_FAILURE, CHECK_DUPLICATE_ID_SUCCESS, FIND_ID, FIND_ID_FAILURE, FIND_ID_SUCCESS, FIND_PASSWORD, FIND_PASSWORD_FAILURE, FIND_PASSWORD_SUCCESS, SET_BUSINESS_LICENSE, SET_ENTREPRENEUR_INFO, SET_PASSWORD, SET_STORE_INFO, SIGN_UP, SIGN_UP_FAILURE, SIGN_UP_SUCCESS, VERIFICATION_SMS_MESSAGE } from "../actions/actionTypes";
 
 const initialState = {
     id: '',
@@ -47,6 +48,8 @@ function authReducer(state = initialState, action) {
 
         case CHECK_DUPLICATE_ID:
         case SIGN_UP:
+        case FIND_ID:
+        case FIND_PASSWORD:
             return {
                 ...state,
                 loading: true,
@@ -58,13 +61,6 @@ function authReducer(state = initialState, action) {
                 loading: false,
                 id: action.data.id
             }
-
-        case CHECK_DUPLICATE_ID_FAILURE:
-            return {
-                ...state,
-                loading: false
-            }
-
         case SET_PASSWORD:
             return {
                 ...state,
@@ -76,6 +72,31 @@ function authReducer(state = initialState, action) {
                 ...state,
                 loading: false
             }
+
+        case FIND_ID_SUCCESS:
+            return {
+                ...state,
+                id: action.payload.id
+            }
+
+        case FIND_PASSWORD_SUCCESS:
+            Alert.alert('⭐️ 새 비밀번호를 설정해주세요 ⭐️');
+            return {
+                ...state,
+                loading: false
+            }
+
+        case CHECK_DUPLICATE_ID_FAILURE:
+        case SIGN_UP_FAILURE:
+        case FIND_ID_FAILURE:
+        case FIND_PASSWORD_FAILURE:
+            Alert.alert(action.message);
+            return {
+                ...state,
+                loading: false
+            }
+
+
     }
     return { ...state }
 }
