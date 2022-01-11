@@ -5,7 +5,6 @@ import { AUTO_LOGIN, AUTO_LOGIN_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } f
 const initialState = {
     id: '',
     name: '',
-    password: '',
     store_num: '',
     store_name: '',
     store_phone: '',
@@ -44,7 +43,15 @@ function entrepreneurReducer(state = initialState, action) {
 
         case AUTO_LOGIN_SUCCESS:
             return {
-
+                ...state,
+                id: action.data.id,
+                name: action.payload.name,
+                store_num: action.payload.store_num,
+                store_name: action.payload.store_name,
+                store_phone: action.payload.store_phone,
+                store_kind: action.payload.store_kind,
+                store_address: action.payload.store_address,
+                filename: action.payload.filename,
             }
     }
     return { ...state }

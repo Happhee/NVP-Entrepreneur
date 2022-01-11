@@ -47,9 +47,7 @@ export const autoLogin = (dataToSubmit) => {
 
         axiosInstance.get(ENTREPRENEUR_URL + PROFILE_URL, dataToSubmit)
             .then((res) => {
-                const data = res.data
-                console.log('자동로그인성공')
-                dispatch(autoLoginSuccess(dataToSubmit, data))
+                dispatch(autoLoginSuccess(res.data.data, dataToSubmit))
             })
             .catch(err => {
                 dispatch(autoLoginFailure(err))
@@ -59,15 +57,15 @@ export const autoLogin = (dataToSubmit) => {
 
 const autoLoginRequest = () => {
     return {
-        type: AUTO_LOGIN
+        type: AUTO_LOGIN,
     }
 }
 
-const autoLoginSuccess = (id, data) => {
+const autoLoginSuccess = (payload, dataToSubmit) => {
     return {
         type: AUTO_LOGIN_SUCCESS,
-        id: id,
-        payload: data
+        data: dataToSubmit,
+        payload: payload
     }
 }
 

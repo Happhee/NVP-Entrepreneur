@@ -15,7 +15,7 @@ function Splash(props) {
                     console.log(id)
 
                     if (id != null) {
-                        // props.goMain(id)
+                        props.autoLogin({ id: id });
                         navigation.replace('Main');
 
                     } else {
