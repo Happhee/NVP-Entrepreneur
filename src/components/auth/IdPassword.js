@@ -107,6 +107,15 @@ function IdPassword(props) {
                                     filename: props.auth.filename
                                 }
                                 props.signup(dataToSubmit)
+                                const formData = new FormData();
+                                console.log(formData);
+                                const photo = {
+                                    uri: props.auth.filepath,
+                                    type: 'multipart/form-data',
+                                    name: `${props.auth.filename}`
+                                }
+                                formData.append('image', photo);
+                                props.uploadCertificate(formData)
                             }
                             navigation.navigate('Login')
                         }} />
