@@ -14,9 +14,10 @@ function Login(props) {
 
     useEffect(() => {
         if (props.entrepreneur.id) {
+            props.getProfile({ id: props.entrepreneur.id })
             navigation.navigate('Main')
         }
-    })
+    }, [props.entrepreneur.id])
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
