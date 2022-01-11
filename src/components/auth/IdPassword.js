@@ -102,6 +102,7 @@ function IdPassword(props) {
                                     store_num: props.auth.store_num,
                                     store_name: props.auth.store_name,
                                     store_phone: props.auth.store_phone,
+                                    phone: props.auth.store_phone,
                                     store_kind: props.auth.store_date,
                                     store_address: props.auth.store_address,
                                     filename: props.auth.filename
