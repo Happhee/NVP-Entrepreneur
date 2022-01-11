@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import { Alert } from "react-native";
-import { AUTO_LOGIN, AUTO_LOGIN_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } from "../actions/actionTypes";
+import { AUTO_LOGIN, AUTO_LOGIN_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT } from "../actions/actionTypes";
 
 const initialState = {
     id: '',
@@ -53,6 +53,10 @@ function entrepreneurReducer(state = initialState, action) {
                 store_address: action.payload.store_address,
                 filename: action.payload.filename,
             }
+
+        case LOGOUT:
+            AsyncStorage.clear();
+            return { initialState }
     }
     return { ...state }
 }

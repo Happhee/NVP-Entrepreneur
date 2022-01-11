@@ -1,4 +1,4 @@
-import { AUTO_LOGIN, AUTO_LOGIN_FAILURE, AUTO_LOGIN_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } from "../actions/actionTypes";
+import { AUTO_LOGIN, AUTO_LOGIN_FAILURE, AUTO_LOGIN_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT } from "../actions/actionTypes";
 import axiosInstance from "../../lib/axiosInstance";
 import { ENTREPRENEUR_URL, LOGIN_URL, PROFILE_URL } from "../../lib/url";
 export const login = (dataToSubmit) => {
@@ -76,3 +76,8 @@ const autoLoginFailure = (err) => {
     }
 }
 
+
+
+export const logout = () => {
+    return { type: LOGOUT }
+}
