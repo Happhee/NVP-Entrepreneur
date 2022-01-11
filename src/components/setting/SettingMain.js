@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 function SettingMain(props) {
     const navigation = useNavigation();
+    console.log(props.entrepreneur);
     return (
 
         <View style={settingStyles.container}>
