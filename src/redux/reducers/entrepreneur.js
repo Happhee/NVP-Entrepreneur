@@ -56,7 +56,17 @@ function entrepreneurReducer(state = initialState, action) {
 
         case LOGOUT:
             AsyncStorage.clear();
-            return { initialState }
+            return {
+                ...state,
+                id: '',
+                name: '',
+                store_num: '',
+                store_name: '',
+                store_phone: '',
+                store_kind: '',
+                store_address: '',
+                filename: '',
+            }
     }
     return { ...state }
 }
