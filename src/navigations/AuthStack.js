@@ -9,6 +9,7 @@ import StoreInfoScreen from '../screens/AuthStack/StoreInfo';
 import IdPasswordScreen from '../screens/AuthStack/IdPassword';
 import SearchAddressScreen from '../screens/AuthStack/SearchAddress';
 import BusinessLicenseScreen from '../screens/AuthStack/BusinessLicense';
+import NewPasswordScreen from '../screens/AuthStack/NewPassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +54,11 @@ const AuthStackScreen = () => {
                     headerBackTitleVisible: false
                 }} />
 
+            <Stack.Screen name="NewPassword" component={NewPasswordScreen}
+                options={{
+                    title: '',
+                    headerBackTitleVisible: false
+                }} />
         </Stack.Navigator>
     )
 }

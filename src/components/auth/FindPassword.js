@@ -24,6 +24,14 @@ function FindPassword(props) {
 
     })
 
+    useEffect(() => {
+
+        if (props.auth.id != '') {
+            navigation.navigate('NewPassword')
+        }
+
+    }, [props.auth.id])
+
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
