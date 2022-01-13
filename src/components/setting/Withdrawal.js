@@ -17,7 +17,7 @@ function WithdrawalUser(props) {
                     <ConfirmButton buttonText="회원탈퇴 하기"
                         onPress={function () {
                             props.deleteEntrepreneur({ id: props.entrepreneur.id });
-                            // navigation.replace('Auth');
+                            navigation.replace('Auth');
                         }}
                     />
                 </View>

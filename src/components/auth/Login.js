@@ -7,17 +7,26 @@ import { FooterButton } from '../common/Button';
 import Header from '../common/Header';
 import IconButton from '../common/IconButton';
 import { TouchableWithoutFeedback } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 function Login(props) {
     const navigation = useNavigation();
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        if (props.entrepreneur.id) {
-            props.getProfile({ id: props.entrepreneur.id })
-            navigation.navigate('Main')
-        }
-    }, [props.entrepreneur.id])
+        AsyncStorage.getItem('id')
+            .then((value) => {
+                if (value) {
+                    console.log(value);
+                    props.getProfile({ id: value })
+                    navigation.navigate('Main')
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
+    }, [])
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
