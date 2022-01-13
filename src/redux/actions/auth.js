@@ -1,6 +1,6 @@
-import { CHECK_DUPLICATE_ID, CHECK_DUPLICATE_ID_FAILURE, CHECK_DUPLICATE_ID_SUCCESS, FIND_ID, FIND_ID_FAILURE, FIND_ID_SUCCESS, FIND_PASSWORD, FIND_PASSWORD_FAILURE, SET_BUSINESS_LICENSE, SET_ENTREPRENEUR_INFO, SET_PASSWORD, SET_STORE_INFO, SIGN_UP, SIGN_UP_FAILURE, SIGN_UP_SUCCESS, VERIFICATION_SMS_MESSAGE } from "./actionTypes";
+import { CHECK_DUPLICATE_ID, CHECK_DUPLICATE_ID_FAILURE, CHECK_DUPLICATE_ID_SUCCESS, FIND_ID, FIND_ID_FAILURE, FIND_ID_SUCCESS, FIND_PASSWORD, FIND_PASSWORD_FAILURE, FIND_PASSWORD_SUCCESS, NEW_PASSWORD_FAILURE, NEW_PASSWORD_SUCCESS, SET_BUSINESS_LICENSE, SET_ENTREPRENEUR_INFO, SET_PASSWORD, SET_STORE_INFO, SIGN_UP, SIGN_UP_FAILURE, SIGN_UP_SUCCESS, VERIFICATION_SMS_MESSAGE } from "./actionTypes";
 import axiosInstance from "../../lib/axiosInstance";
-import { CHECK_ID_URL, ENTREPRENEUR_URL, FIND_ID_URL, FIND_PASSWORD_URL, SIGN_UP_URL } from "../../lib/url";
+import { CHECK_ID_URL, ENTREPRENEUR_URL, FIND_ID_URL, FIND_NEW_PASSWORD_URL, FIND_PASSWORD_URL, SIGN_UP_URL } from "../../lib/url";
 
 //인증 성공
 export function verifySmsMessage(dataToSubmit) {
@@ -35,6 +35,7 @@ export const checkDuplicateId = (dataToSubmit) => {
         dispatch(checkDuplicateIdRequest())
         axiosInstance.post(ENTREPRENEUR_URL + CHECK_ID_URL, dataToSubmit)
             .then((res) => {
+                console.log(res.data)
                 dispatch(checkDuplicateIdSuccess(dataToSubmit))
             })
             .catch((err) => {
@@ -115,10 +116,10 @@ export const findId = (dataToSubmit) => {
         dispatch(findIdRequest())
         axiosInstance.post(ENTREPRENEUR_URL + FIND_ID_URL, dataToSubmit)
             .then((res) => {
-                dispatch(findIdSuccess(res.data))
+                console.log(res.data)
+                dispatch(findIdSuccess(res.data.data))
             })
             .catch((err) => {
-                console.log(err.response.data.message)
                 dispatch(findIdFailure(err.response.data.message))
             })
     }
@@ -148,8 +149,11 @@ const findIdFailure = (err) => {
 export const findPassword = (dataToSubmit) => {
     return (dispatch) => {
         dispatch(findPasswordRequest())
+        console.log('비밀번호 찾기')
+
         axiosInstance.post(ENTREPRENEUR_URL + FIND_PASSWORD_URL, dataToSubmit)
             .then((res) => {
+                console.log(res)
                 dispatch(findPasswordSuccess(dataToSubmit));
             })
             .catch((err) => {
@@ -165,15 +169,46 @@ const findPasswordRequest = () => {
 }
 
 const findPasswordSuccess = (data) => {
+    console.log(data);
     return {
         type: FIND_PASSWORD_SUCCESS,
-        payload: data
+        data: data
     }
 }
 
 const findPasswordFailure = (err) => {
     return {
         type: FIND_PASSWORD_FAILURE,
+        message: err
+    }
+}
+
+export const newPassword = (dataToSubmit) => {
+    console.log(dataToSubmit)
+    return (dispatch) => {
+        dispatch(findPasswordRequest())
+        axiosInstance.patch(ENTREPRENEUR_URL + FIND_NEW_PASSWORD_URL, dataToSubmit)
+            .then((res) => {
+                dispatch(newPasswordSuccess(dataToSubmit));
+            })
+            .catch((err) => {
+                dispatch(newPasswordFailure(err))
+            })
+    }
+}
+
+
+const newPasswordSuccess = (data) => {
+    console.log(data);
+    return {
+        type: NEW_PASSWORD_SUCCESS,
+        data: data
+    }
+}
+
+const newPasswordFailure = (err) => {
+    return {
+        type: NEW_PASSWORD_FAILURE,
         message: err
     }
 }
