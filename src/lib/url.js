@@ -11,7 +11,7 @@ export const CHECK_ID_URL = "/check";
 
 export const FIND_ID_URL = "/find/id"
 export const FIND_PASSWORD_URL = "/find/password"
-
+export const FIND_NEW_PASSWORD_URL = "/find/newpassword"
 
 export const API_BASE_URL = "https://api.odcloud.kr/api/nts-businessman/v1";
 export const API_VAILDATE_URL = "/vaildate";

@@ -56,6 +56,8 @@ function authReducer(state = initialState, action) {
             }
 
         case CHECK_DUPLICATE_ID_SUCCESS:
+            Alert.alert('⭐️ 사용가능한 아이디입니다 ⭐️');
+
             return {
                 ...state,
                 loading: false,
@@ -74,6 +76,7 @@ function authReducer(state = initialState, action) {
             }
 
         case FIND_ID_SUCCESS:
+            Alert.alert('⭐️ 아이디는 ' + action.payload.id + ' 입니다 ⭐️');
             return {
                 ...state,
                 id: action.payload.id
@@ -83,10 +86,13 @@ function authReducer(state = initialState, action) {
             Alert.alert('⭐️ 새 비밀번호를 설정해주세요 ⭐️');
             return {
                 ...state,
-                loading: false
+                loading: false,
+                id: action.data.id,
             }
 
         case CHECK_DUPLICATE_ID_FAILURE:
+            Alert.alert('❌ 존재하는 아이디입니다 ❌');
+
         case SIGN_UP_FAILURE:
         case FIND_ID_FAILURE:
         case FIND_PASSWORD_FAILURE:

@@ -34,6 +34,7 @@ function IdPassword(props) {
                         />
                         <ConfirmButton buttonText='검사' onPress={() => {
                             props.checkDuplicateId({ id: id })
+                            Keyboard.dismiss();
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
@@ -41,7 +42,8 @@ function IdPassword(props) {
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
-                            placeholderTextColor={colors.nvpRoot}
+                            placeholder="간편비밀번호 6자리"
+                            placeholderTextColor={colors.nvpUnder}
                             secureTextEntry
                             onChangeText={(inputPassword) => {
                                 setPassword(inputPassword);
@@ -117,8 +119,9 @@ function IdPassword(props) {
                                 }
                                 formData.append('image', photo);
                                 props.uploadCertificate(formData)
+                                navigation.navigate('Login')
+
                             }
-                            navigation.navigate('Login')
                         }} />
                     </View>
                 </View>

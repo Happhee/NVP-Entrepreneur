@@ -21,7 +21,6 @@ function FindId(props) {
         if (isName(name) && isPhoneNumber(phone) && store_number.length === 10) {
             setFindIcon('search')
         }
-
     })
 
     return (

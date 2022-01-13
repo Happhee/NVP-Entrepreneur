@@ -51,8 +51,10 @@ export const uploadCertificateFailure = (err) => {
 
 
 export const resetPassword = (dataToSubmit) => {
+    console.log(dataToSubmit)
     return (dispatch) => {
         dispatch(resetPasswordRequest())
+
         axiosInstance.patch(ENTREPRENEUR_URL + PROFILE_URL, dataToSubmit)
             .then((res) => {
                 console.log('비빌번호 재설정완료')
