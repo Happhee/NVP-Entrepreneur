@@ -12,10 +12,7 @@ axiosInstance.interceptors.request.use(
         const refreshToken = await AsyncStorage.getItem('refreshToken');
         if (refreshToken) {
             config.headers['Authorization'] = `Bearer ${refreshToken}`
-
         }
-
-
         return config;
     },
     //오류 요청
@@ -29,13 +26,13 @@ axiosInstance.interceptors.response.use(
     //200대 응답 
     async function (res) {
         console.log('응답')
-        // console.log(res);
+        console.log(res);
         return res
     },
     // //200 이외 응답
     async (err) => {
         console.log('에러ㅓ')
-        console.log(err.response.data)
+        console.log(err)
 
         // console.log(err);
         // console.log(err.config);
