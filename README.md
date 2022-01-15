@@ -1,7 +1,7 @@
 # NVP-Entrepreneur
 
 # 🖥  프로젝트명 
-Nfc + Vaccine Pass
+Nfc + Vaccine Pass (사업자용)
 
 # 🖥 프로젝트 개요
 > 안심콜로 인증을 하는 가게에서는 백신패스를 확인하기 위해서 직원이 **직접**확인을 해야한다.
@@ -16,10 +16,19 @@ Nfc + Vaccine Pass
  > - Nfc 태그에 사업자의 가게 정보 등록
  
  
-  # 🖥 예상 UI 및 프로젝트 구조
+  # 🖥 예상 UI
   
  ## 사업자
 ![](https://images.velog.io/images/seohee0112/post/a3fe23bb-3f30-4ba0-9c7a-5565aa8c071f/image.png)
+
+# 🖥 NFC 기술
+![image](https://user-images.githubusercontent.com/79238676/149599736-16b36fbf-2763-443f-82c9-244841bb202d.png)
+
+
+# 🖥 실제 적용된 NFC 상호 인식 기술
+1. 개인의 정보가(백신패스) 담긴 NFC 태그의 기능을 NVP 버튼을 눌러 활성화 시킴
+2. 사업자의 정보가 담긴 NFC 태그 스티커에 개인의 휴대폰을 접촉
+3. 정보의 상호교환이 가능하며, 방문기록을 자동으로 서버에 전송
 
 ![image](https://user-images.githubusercontent.com/79238676/149598769-df3b6f5c-87a5-4471-a0a2-a367e17c95d4.png)
 
