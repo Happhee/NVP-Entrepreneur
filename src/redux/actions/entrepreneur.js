@@ -1,4 +1,4 @@
-import { AUTO_LOGIN, AUTO_LOGIN_FAILURE, AUTO_LOGIN_SUCCESS, DELETE_ENTREPRENEUR, DELETE_ENTREPRENEUR_FAILURE, DELETE_ENTREPRENEUR_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT } from "../actions/actionTypes";
+import { AUTO_LOGIN, AUTO_LOGIN_FAILURE, AUTO_LOGIN_SUCCESS, DELETE_ENTREPRENEUR, DELETE_ENTREPRENEUR_FAILURE, DELETE_ENTREPRENEUR_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, REGISTER_NFC_ID, REGISTER_NFC_ID_FAILURE, REGISTER_NFC_ID_SUCCESS } from "../actions/actionTypes";
 import axiosInstance from "../../lib/axiosInstance";
 import { ENTREPRENEUR_URL, LOGIN_URL, PROFILE_URL } from "../../lib/url";
 export const login = (dataToSubmit) => {
@@ -121,6 +121,48 @@ export const deleteEntrepreneurSuccess = () => {
 export const deleteEntrepreneurFailure = (err) => {
     return {
         type: DELETE_ENTREPRENEUR_FAILURE,
+        message: err
+    }
+}
+
+
+export const registerNfcId = (dataToSubmit) => {
+    return (dispatch) => {
+        console.log('회원삭제');
+        dispatch(registerNfcIdRequest())
+        console.log(dataToSubmit);
+
+        // axiosInstance.post(ENTREPRENEUR_URL, { data: dataToSubmit })
+        //     .then((res) => {
+        //         console.log('일련번호 등록 성공');
+
+        //         dispatch(registerNfcIdSuccess(dataToSubmit))
+        //     })
+        //     .catch((err) => {
+        //         console.log('일련번호 등록 실패');
+
+        //         dispatch(registerNfcIdFailure(err))
+        //     })
+    }
+}
+
+const registerNfcIdRequest = () => {
+    console.log('요청')
+    return {
+        type: REGISTER_NFC_ID,
+    }
+}
+
+const registerNfcIdSuccess = (dataToSubmit) => {
+    return {
+        type: REGISTER_NFC_ID_SUCCESS,
+        data: dataToSubmit
+    }
+}
+
+const registerNfcIdFailure = (err) => {
+    return {
+        type: REGISTER_NFC_ID_FAILURE,
         message: err
     }
 }
