@@ -26,7 +26,7 @@ function Login(props) {
                 console.log(err);
             })
 
-    }, [])
+    }, [id])
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
