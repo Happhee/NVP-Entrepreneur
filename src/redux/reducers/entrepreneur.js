@@ -50,7 +50,7 @@ function entrepreneurReducer(state = initialState, action) {
 
         case LOGIN_FAILURE:
         case AUTO_LOGIN_FAILURE:
-            Alert.alert('❌ 로그인에 실패하였습니다 ❌')
+            Alert.alert('❌ Failed to log in ❌')
             return {
                 ...state,
                 loading: false
@@ -72,7 +72,7 @@ function entrepreneurReducer(state = initialState, action) {
 
         case LOGOUT:
             AsyncStorage.clear();
-            Alert.alert('⭐️ 로그아웃 되었습니다 ⭐️')
+            Alert.alert('⭐️ Success Logout ⭐️')
             return {
                 ...state,
                 id: '',
@@ -87,7 +87,7 @@ function entrepreneurReducer(state = initialState, action) {
 
         case DELETE_ENTREPRENEUR_SUCCESS:
             AsyncStorage.clear();
-            Alert.alert('⭐️ 회원탈퇴 되었습니다 ⭐️')
+            Alert.alert('⭐️ Success Membership Withdrawal ⭐️')
             return {
                 ...state,
                 id: '',
@@ -102,21 +102,21 @@ function entrepreneurReducer(state = initialState, action) {
             }
 
         case DELETE_ENTREPRENEUR_FAILURE:
-            Alert.alert('❌ 회원탈퇴에 실패하였습니다 ❌')
+            Alert.alert('❌ Failure Membership Withdrawal ❌')
             return {
                 ...state,
                 loading: false
 
             };
         case RESET_PASSWORD_SUCCESS:
-            Alert.alert('⭐️ 비밀번호가 변경 되었습니다 ⭐️');
+            Alert.alert('⭐️ The password has been changed ⭐️');
             return {
                 ...state,
                 loading: false
 
             };
         case RESET_PASSWORD_FAILURE:
-            Alert.alert('❌ 비밀번호 변경에 실패하였습니다 ❌')
+            Alert.alert('❌ Failed to change the password ❌')
             return {
                 ...state,
                 loading: false
@@ -131,7 +131,7 @@ function entrepreneurReducer(state = initialState, action) {
             }
 
         case REGISTER_NFC_ID_FAILURE:
-            Alert.alert('❌ NFC 등록에 실패하였습니다 ❌')
+            Alert.alert('❌ NFC registration failed ❌')
             return {
                 ...state,
                 loading: false

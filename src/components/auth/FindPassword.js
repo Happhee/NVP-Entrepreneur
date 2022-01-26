@@ -35,52 +35,52 @@ function FindPassword(props) {
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
-                <Header title="NVP" subTitle="비밀번호 찾기" />
+                <Header title="NVP" subTitle="Finding a Password" />
                 <View style={authStyles.inputRoot}>
 
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>이름</Text>
+                        <Text style={authStyles.inputTitleText}>Name</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             placeholderTextColor={colors.nvpUnder}
-                            placeholder="한글2-4자"
+                            placeholder=""
                             onChangeText={(input) => {
                                 setName(input);
 
                             }}
                         />
-                        <ConfirmButton buttonText='확인' onPress={() => {
+                        {/* <ConfirmButton buttonText='확인' onPress={() => {
                             console.log('사업자 등록번호')
                             if (!isName(name)) {
                                 Alert.alert('잘못된 형식의 이름입니다');
                             }
-                        }} />
+                        }} /> */}
                     </View>
 
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>아이디</Text>
+                        <Text style={authStyles.inputTitleText}>ID</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             placeholderTextColor={colors.nvpUnder}
-                            placeholder="아이디"
+                            placeholder="ID"
                             onChangeText={(input) => {
                                 setId(input);
                             }}
                         />
-                        <ConfirmButton buttonText='확인' onPress={() => {
+                        {/* <ConfirmButton buttonText='check' onPress={() => {
                             console.log('사업자 등록번호')
                             if (!isName(name)) {
                                 Alert.alert('잘못된 형식의 이름입니다');
                             }
-                        }} />
+                        }} /> */}
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>사업자  등록번호</Text>
+                        <Text style={authStyles.inputTitleText}>Business Registration Number</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
                             maxLength={10}
-                            placeholder="숫자 10자리"
+                            placeholder="10 digits"
                             placeholderTextColor={colors.nvpUnder}
                             onChangeText={(inputNumber) => {
                                 setStoreNumber(inputNumber);
@@ -90,10 +90,10 @@ function FindPassword(props) {
                             }}
 
                         />
-                        <ConfirmButton buttonText='확인' onPress={() => {
+                        <ConfirmButton buttonText='Check' onPress={() => {
                             console.log('사업자 등록번호')
                             if (store_number.length != 10) {
-                                Alert.alert('10자리로 입력해주세요');
+                                Alert.alert('Please enter it in 10 digits');
                             }
                         }} />
                     </View>

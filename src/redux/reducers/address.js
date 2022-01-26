@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import { VERIFICATION_SMS_MESSAGE } from "../actions/actionTypes";
+import { LOGOUT, VERIFICATION_SMS_MESSAGE } from "../actions/actionTypes";
 
 const initialState = {
     postcode: '',
@@ -9,7 +9,10 @@ const initialState = {
 }
 
 function addressReducer(state = initialState, action) {
-
+    switch (action.type) {
+        case LOGOUT:
+            return { ...initialState };
+    }
     return { ...state }
 }
 

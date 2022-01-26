@@ -27,7 +27,7 @@ function apiReducer(state = initialState, action) {
             }
 
         case API_CHECK_ENTREPRENEUR_STATUS_FAILURE:
-            Alert.alert('요청에 실패하였습니다')
+            Alert.alert('Request failed')
             return initialState;
     }
     return { ...state }

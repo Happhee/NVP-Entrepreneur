@@ -15,7 +15,7 @@ function ChoiceIdPassword(props) {
 
     return (
         <View style={authStyles.container}>
-            <Header title="NVP" subTitle="아이디/비번 찾기" />
+            <Header title="NVP" subTitle="Finding ID/Password" />
 
 
             <View style={authStyles.findRoot}>
@@ -25,7 +25,7 @@ function ChoiceIdPassword(props) {
                     <View style={authStyles.findButtonView}>
                         <FontAwesome
                             size={120} name="id-card-o" color='white' />
-                        <Text style={authStyles.findTitileText} >아이디 찾기</Text>
+                        <Text style={authStyles.findTitileText} >Finding the ID</Text>
                     </View>
                 </TouchableWithoutFeedback>
 
@@ -35,7 +35,7 @@ function ChoiceIdPassword(props) {
                     <View style={authStyles.findButtonView}>
                         <MaterialCommunityIcons
                             size={120} name="cellphone-key" color='white' />
-                        <Text style={authStyles.findTitileText} >비밀번호 찾기</Text>
+                        <Text style={authStyles.findTitileText} >Finding a Password</Text>
 
                     </View>
                 </TouchableWithoutFeedback>

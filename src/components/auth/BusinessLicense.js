@@ -13,10 +13,10 @@ function BusinessLicense(props) {
         <View style={businessLicenseStyles.container}>
 
             <View style={businessLicenseStyles.header}>
-                <Text style={businessLicenseStyles.headerFont}>사업자 등록증 촬영</Text>
+                <Text style={businessLicenseStyles.headerFont}>Business license photo shoot</Text>
             </View>
             <View style={businessLicenseStyles.registerInfo}>
-                <Text style={businessLicenseStyles.registerFont}>네모 상자가 나타나게 등록증을 찍어주세요</Text>
+                <Text style={businessLicenseStyles.registerFont}>Please take a photo of your registration card so that a square box appears.</Text>
             </View>
 
             <View style={businessLicenseStyles.cameraView} >

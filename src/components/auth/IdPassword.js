@@ -19,11 +19,11 @@ function IdPassword(props) {
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
-                <Header title="NVP" subTitle="ID/PW 생성" />
+                <Header title="NVP" subTitle="Create ID/PW" />
                 <View style={authStyles.inputRoot}>
 
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>아이디</Text>
+                        <Text style={authStyles.inputTitleText}>ID</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             placeholderTextColor={colors.nvpRoot}
@@ -32,17 +32,17 @@ function IdPassword(props) {
 
                             }}
                         />
-                        <ConfirmButton buttonText='검사' onPress={() => {
+                        <ConfirmButton buttonText='Check' onPress={() => {
                             props.checkDuplicateId({ id: id })
                             Keyboard.dismiss();
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>비밀번호</Text>
+                        <Text style={authStyles.inputTitleText}>PW</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
-                            placeholder="간편비밀번호 6자리"
+                            placeholder="6 digits"
                             placeholderTextColor={colors.nvpUnder}
                             secureTextEntry
                             onChangeText={(inputPassword) => {
@@ -52,17 +52,17 @@ function IdPassword(props) {
                                 }
                             }}
                         />
-                        <ConfirmButton buttonText='설정' onPress={() => {
+                        <ConfirmButton buttonText='Set' onPress={() => {
                             if (password.length === 6) {
-                                Alert.alert('간편번호 확인을 진행해주세요')
+                                Alert.alert('Please check the simple number.')
                             }
                             else {
-                                Alert.alert('간편번호는 6자리로 입력해주세요')
+                                Alert.alert('Please enter the simple number in 6 digits.')
                             }
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>비밀번호 확인</Text>
+                        <Text style={authStyles.inputTitleText}>Checking the PW</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
@@ -73,10 +73,10 @@ function IdPassword(props) {
 
                             }}
                         />
-                        <ConfirmButton buttonText='확인' onPress={() => {
+                        <ConfirmButton buttonText='Check' onPress={() => {
                             Keyboard.dismiss();
                             if (password === confirmPassword) {
-                                Alert.alert('비밀번호 설정이 완료되었습니다')
+                                Alert.alert('I\'m done setting the password')
                                 setSuccessPassword(true);
                                 props.setPassword({ password: password });
                                 if (props.auth.id) {
@@ -85,11 +85,10 @@ function IdPassword(props) {
                                 // props.navigation.navigate('CheckCertificate')
                             }
                             else {
-                                Alert.alert('간편번호가 다릅니다!!')
+                                Alert.alert('The convenience number is different!!');
                             }
                         }} />
                     </View>
-
 
                 </View>
                 <View style={authStyles.nextButtonView}>
@@ -126,7 +125,7 @@ function IdPassword(props) {
                     </View>
                 </View>
             </View>
-        </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback >
     )
 }
 export default IdPassword;
