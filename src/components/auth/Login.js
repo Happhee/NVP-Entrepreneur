@@ -14,21 +14,28 @@ function Login(props) {
     const [password, setPassword] = useState('');
     const [login, setLogin] = useState(false);
 
-    console.log(props.entrepreneur);
-    useEffect(() => {
-        AsyncStorage.getItem('id')
-            .then((value) => {
-                if (value) {
-                    console.log('여기 ' + value);
-                    props.getProfile({ id: value })
-                    navigation.navigate('Main')
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            })
 
-    }, [props.entrepreneur])
+    console.log(props.entrepreneur.data);
+    useEffect(() => {
+        // AsyncStorage.getItem('id')
+        //     .then((value) => {
+        //         if (value) {
+        //             console.log('여기 ' + value);
+        //             props.getProfile({ id: value })
+        //             navigation.navigate('Main')
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     })
+
+        if (props.entrepreneur.data.accessToken) {
+            // props.getProfile({ id: id })
+            navigation.navigate('Main')
+            // console.log(props.login.data)
+        }
+
+    })
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
@@ -72,7 +79,7 @@ function Login(props) {
                             console.log('로그인요청')
                             console.log(id)
                             props.login({ id: id, password: password })
-                            setLogin(true)
+
 
                         }} />
                     </View>

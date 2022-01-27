@@ -17,7 +17,8 @@ const initialState = {
     store_address: '',
     filename: '',
     nfcId: '',
-    loading: false
+    loading: false,
+    data: ''
 }
 
 function entrepreneurReducer(state = initialState, action) {
@@ -45,7 +46,8 @@ function entrepreneurReducer(state = initialState, action) {
                 ...state,
                 id: action.data.id,
                 password: action.data.password,
-                loading: false
+                loading: false,
+                data: action.payload
             }
 
         case LOGIN_FAILURE:
