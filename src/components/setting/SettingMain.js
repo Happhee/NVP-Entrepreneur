@@ -12,12 +12,12 @@ function SettingMain(props) {
 
         <View style={settingStyles.container}>
             <View style={settingStyles.header}>
-                <Button title="NFC 등록" />
+                <Button title="Register NFC" />
             </View>
 
             <View style={settingStyles.content}
                 onTouchStart={() => navigation.navigate('MyInformation')} >
-                <Text style={settingStyles.contentFont} >사업자 정보조회</Text>
+                <Text style={settingStyles.contentFont} >My Information</Text>
             </View>
 
 
@@ -25,19 +25,19 @@ function SettingMain(props) {
             <View style={settingStyles.content}
                 onTouchStart={() => navigation.navigate('ResetPassword')} >
 
-                <Text style={settingStyles.contentFont}>비밀번호 재설정</Text>
+                <Text style={settingStyles.contentFont}>Reset the Password</Text>
 
             </View>
             <View style={settingStyles.content}
                 onTouchStart={() => navigation.navigate('Logout')} >
 
-                <Text style={settingStyles.contentFont}>로그아웃</Text>
+                <Text style={settingStyles.contentFont}>LOG OUT</Text>
 
             </View>
             <View style={settingStyles.content}
                 onTouchStart={() => navigation.navigate('Withdrawal')} >
 
-                <Text style={settingStyles.contentFont}>회원탈퇴</Text>
+                <Text style={settingStyles.contentFont}>Membership Withdrawal</Text>
 
             </View>
 

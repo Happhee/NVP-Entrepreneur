@@ -12,29 +12,38 @@ function Login(props) {
     const navigation = useNavigation();
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
+    const [login, setLogin] = useState(false);
 
+
+    console.log(props.entrepreneur.data);
     useEffect(() => {
-        AsyncStorage.getItem('id')
-            .then((value) => {
-                if (value) {
-                    console.log(value);
-                    props.getProfile({ id: value })
-                    navigation.navigate('Main')
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        // AsyncStorage.getItem('id')
+        //     .then((value) => {
+        //         if (value) {
+        //             console.log('여기 ' + value);
+        //             props.getProfile({ id: value })
+        //             navigation.navigate('Main')
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     })
 
-    }, [])
+        if (props.entrepreneur.data.accessToken) {
+            // props.getProfile({ id: id })
+            navigation.navigate('Main')
+            // console.log(props.login.data)
+        }
+
+    })
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
-                <Header title="NVP" subTitle="로그인" />
+                <Header title="NVP" subTitle="LOGIN" />
                 <View style={authStyles.inputRoot}>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>아이디</Text>
+                        <Text style={authStyles.inputTitleText}>ID</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             placeholder="id"
@@ -45,7 +54,7 @@ function Login(props) {
                         />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>비밀번호</Text>
+                        <Text style={authStyles.inputTitleText}>PW</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
@@ -71,12 +80,13 @@ function Login(props) {
                             console.log(id)
                             props.login({ id: id, password: password })
 
+
                         }} />
                     </View>
 
                     <View style={authStyles.footerButtonView}>
-                        <FooterButton onPress={() => { navigation.navigate('ChoiceIdPassword') }} buttonText='아이디/비번 찾기' />
-                        <FooterButton onPress={() => { navigation.navigate('EntrepreneurInfo') }} buttonText='회원가입' />
+                        <FooterButton onPress={() => { navigation.navigate('ChoiceIdPassword') }} buttonText='Finding ID/PW' />
+                        <FooterButton onPress={() => { navigation.navigate('EntrepreneurInfo') }} buttonText='SIGN UP' />
                     </View>
 
                 </View>

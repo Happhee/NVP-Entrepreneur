@@ -12,9 +12,9 @@ function WithdrawalUser(props) {
 
         <View style={settingStyles.container}>
             <View style={settingStyles.settingView}>
-                <Text style={settingStyles.contentFont}>정말로 회원탈퇴를 하시겠습니까?</Text>
+                <Text style={settingStyles.contentFont}>Do you really want to leave the membership?</Text>
                 <View style={settingStyles.buttonView}>
-                    <ConfirmButton buttonText="회원탈퇴 하기"
+                    <ConfirmButton buttonText="Membership Withdrawal"
                         onPress={function () {
                             props.deleteEntrepreneur({ id: props.entrepreneur.id });
                             navigation.replace('Auth');

@@ -1,6 +1,11 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import { Alert } from "react-native";
-import { AUTO_LOGIN, AUTO_LOGIN_FAILURE, AUTO_LOGIN_SUCCESS, DELETE_ENTREPRENEUR, DELETE_ENTREPRENEUR_FAILURE, DELETE_ENTREPRENEUR_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, RESET_PASSWORD, RESET_PASSWORD_FAILURE, RESET_PASSWORD_SUCCESS } from "../actions/actionTypes";
+import {
+    AUTO_LOGIN, AUTO_LOGIN_FAILURE, AUTO_LOGIN_SUCCESS, DELETE_ENTREPRENEUR, DELETE_ENTREPRENEUR_FAILURE, DELETE_ENTREPRENEUR_SUCCESS,
+    LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT,
+    REGISTER_NFC_ID, REGISTER_NFC_ID_FAILURE, REGISTER_NFC_ID_SUCCESS,
+    RESET_PASSWORD, RESET_PASSWORD_FAILURE, RESET_PASSWORD_SUCCESS
+} from "../actions/actionTypes";
 
 const initialState = {
     id: '',
@@ -11,15 +16,19 @@ const initialState = {
     store_kind: '',
     store_address: '',
     filename: '',
-    loading: false
+    nfcId: '',
+    loading: false,
+    data: ''
 }
 
 function entrepreneurReducer(state = initialState, action) {
+    console.log(action)
     switch (action.type) {
         case LOGIN:
         case AUTO_LOGIN:
         case DELETE_ENTREPRENEUR:
         case RESET_PASSWORD:
+        case REGISTER_NFC_ID:
             return {
 
                 ...state,
@@ -37,12 +46,13 @@ function entrepreneurReducer(state = initialState, action) {
                 ...state,
                 id: action.data.id,
                 password: action.data.password,
-                loading: false
+                loading: false,
+                data: action.payload
             }
 
         case LOGIN_FAILURE:
         case AUTO_LOGIN_FAILURE:
-            Alert.alert('❌ 로그인에 실패하였습니다 ❌')
+            Alert.alert('❌ Failed to log in ❌')
             return {
                 ...state,
                 loading: false
@@ -64,7 +74,7 @@ function entrepreneurReducer(state = initialState, action) {
 
         case LOGOUT:
             AsyncStorage.clear();
-            Alert.alert('⭐️ 로그아웃 되었습니다 ⭐️')
+            Alert.alert('⭐️ Success Logout ⭐️')
             return {
                 ...state,
                 id: '',
@@ -79,7 +89,7 @@ function entrepreneurReducer(state = initialState, action) {
 
         case DELETE_ENTREPRENEUR_SUCCESS:
             AsyncStorage.clear();
-            Alert.alert('⭐️ 회원탈퇴 되었습니다 ⭐️')
+            Alert.alert('⭐️ Success Membership Withdrawal ⭐️')
             return {
                 ...state,
                 id: '',
@@ -94,21 +104,36 @@ function entrepreneurReducer(state = initialState, action) {
             }
 
         case DELETE_ENTREPRENEUR_FAILURE:
-            Alert.alert('❌ 회원탈퇴에 실패하였습니다 ❌')
+            Alert.alert('❌ Failure Membership Withdrawal ❌')
             return {
                 ...state,
                 loading: false
 
             };
         case RESET_PASSWORD_SUCCESS:
-            Alert.alert('⭐️ 비밀번호가 변경 되었습니다 ⭐️');
+            Alert.alert('⭐️ The password has been changed ⭐️');
             return {
                 ...state,
                 loading: false
 
             };
         case RESET_PASSWORD_FAILURE:
-            Alert.alert('❌ 비밀번호 변경에 실패하였습니다 ❌')
+            Alert.alert('❌ Failed to change the password ❌')
+            return {
+                ...state,
+                loading: false
+
+            };
+
+        case REGISTER_NFC_ID_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                nfcId: data.nfcId
+            }
+
+        case REGISTER_NFC_ID_FAILURE:
+            Alert.alert('❌ NFC registration failed ❌')
             return {
                 ...state,
                 loading: false

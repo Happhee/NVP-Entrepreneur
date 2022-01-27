@@ -26,7 +26,15 @@ const authStyles = StyleSheet.create({
         color: colors.nvpRoot,
         fontFamily: 'DoHyeon-Regular',
         fontSize: 25,
-        width: '22%',
+        width: '25%',
+        padding: 5,
+        textAlign: 'center'
+    },
+    inputLongTitleText: {
+        color: colors.nvpRoot,
+        fontFamily: 'DoHyeon-Regular',
+        fontSize: 18,
+        width: '25%',
         padding: 5,
         textAlign: 'center'
     },
@@ -40,7 +48,7 @@ const authStyles = StyleSheet.create({
         fontSize: 23,
         fontFamily: 'DoHyeon-Regular',
         color: colors.nvpRoot,
-        width: '55%',
+        width: '45%',
         borderRadius: 10,
         padding: 10,
         marginRight: 10,

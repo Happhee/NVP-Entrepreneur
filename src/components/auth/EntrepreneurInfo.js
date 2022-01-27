@@ -21,15 +21,15 @@ function EntrepreneurInfo(props) {
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
-                <Header title="NVP" subTitle="사업자 정보 입력" />
+                <Header title="NVP" subTitle="Business Information" />
                 <View style={authStyles.inputRoot}>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>사업자  등록번호</Text>
+                        <Text style={authStyles.inputLongTitleText}>Business Registration Number</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
                             maxLength={10}
-                            placeholder="숫자 10자리"
+                            placeholder="10 digits"
                             placeholderTextColor={colors.nvpUnder}
                             onChangeText={(inputNumber) => {
                                 setNumber(inputNumber);
@@ -38,17 +38,17 @@ function EntrepreneurInfo(props) {
                                 }
                             }}
                         />
-                        <ConfirmButton buttonText='확인' onPress={() => {
+                        <ConfirmButton buttonText='Check' onPress={() => {
                             console.log('사업자 등록번호')
                             props.checkEntrepreneurStatus({ b_no: [number] })
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>대표자  성명</Text>
+                        <Text style={authStyles.inputTitleText}>Name</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             placeholderTextColor={colors.nvpUnder}
-                            placeholder="한글2-4자"
+                            placeholder="2-4"
                             onChangeText={(inputName) => {
                                 setName(inputName);
 
@@ -56,7 +56,7 @@ function EntrepreneurInfo(props) {
                         />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>개업일자</Text>
+                        <Text style={authStyles.inputTitleText}>Opening Date</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
@@ -72,7 +72,7 @@ function EntrepreneurInfo(props) {
                         />
                     </View>
                     <View style={authStyles.buttonView}>
-                        <ConfirmButton buttonText='사업자 등록증 촬영하기' onPress={() => {
+                        <ConfirmButton buttonText='Filming a Business License' onPress={() => {
                             navigation.navigate('BusinessLicense')
                         }} />
                     </View>
@@ -91,10 +91,10 @@ function EntrepreneurInfo(props) {
                             // if (props.api.message === NOT_ENTREPRENEUR_NUMBER) {
                             //     Alert.alert('사업자 인증을 먼저 해주세요')
                             // } else 
-                            if (!isName(name)) {
+                            /*if (!isName(name)) {
                                 Alert.alert('이름을 정확하게 입력해주세요')
-                            } else if (startDate.length != 8) {
-                                Alert.alert('개업일자를 형식에 맞춰 입력해주세요')
+                            } else */if (startDate.length != 8) {
+                                Alert.alert('Please enter the opening date according to the format')
                             } else {
                                 console.log(dataToSubmit)
                                 props.checkEntrepreneurVaildate(dataToSubmit);

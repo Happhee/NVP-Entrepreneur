@@ -69,11 +69,11 @@ function StoreInfo(props) {
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
-                <Header title="NVP" subTitle="가게 정보 입력" />
+                <Header title="NVP" subTitle="Store Information" />
                 <View style={authStyles.storeInfoRoot}>
 
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>상호명</Text>
+                        <Text style={authStyles.inputTitleText}>Store Name</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             onChangeText={(inputStoreName) => {
@@ -82,14 +82,14 @@ function StoreInfo(props) {
                         />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>사업장   주소</Text>
+                        <Text style={authStyles.inputTitleText}>Address</Text>
 
-                        <Text style={authStyles.inputTextInput}>우편번호 [{props.address.postcode}] </Text>
-
-
+                        <Text style={authStyles.inputTextInput}>Postal code [{props.address.postcode}] </Text>
 
 
-                        <ConfirmButton buttonText='찾기' onPress={() => {
+
+
+                        <ConfirmButton buttonText='Search' onPress={() => {
                             navigation.navigate('SearchAddress')
                         }} />
                     </View>
@@ -105,12 +105,12 @@ function StoreInfo(props) {
                         <Text style={authStyles.inputTextInput}>{props.address.extraAddr}</Text>
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>사업자  전화번호</Text>
+                        <Text style={authStyles.inputTitleText}>Phone Number</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
                             maxLength={11}
-                            placeholder="전화번호"
+                            placeholder="Phone Number"
                             placeholderTextColor={colors.nvpUnder}
                             onChangeText={(input) => {
                                 setStorePhone(input);
@@ -119,25 +119,25 @@ function StoreInfo(props) {
                                 }
                             }}
                         />
-                        <ConfirmButton buttonText='인증' onPress={() => {
+                        <ConfirmButton buttonText='Certify' onPress={() => {
                             if (isPhoneNumber(storePhone)) {
-                                Alert.alert('인증 유효시간은 3분입니다');
+                                Alert.alert('The valid time is 3 minutes');
                                 startTimer();
                                 props.postMessage({ phone: storePhone });
 
                             } else {
-                                Alert.alert('잘못된 형식의 전화번호입니다');
+                                Alert.alert('Invalid phone number');
                                 stopTimer();
                             }
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>인증번호</Text>
+                        <Text style={authStyles.inputLongTitleText}>Certified Number</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
                             maxLength={6}
-                            placeholder="인증번호 확인"
+                            placeholder="6 digits"
                             placeholderTextColor={colors.nvpUnder}
                             onChangeText={(input) => {
                                 setMessage(input);
@@ -146,22 +146,22 @@ function StoreInfo(props) {
                                 }
                             }}
                         />
-                        <ConfirmButton buttonText='확인' onPress={() => {
+                        <ConfirmButton buttonText='Check' onPress={() => {
                             if (parseInt(props.sms.message) === parseInt(message)) {
 
                                 setSuccessMessage(true);
-                                Alert.alert('인증에 성공하였습니다! 다음단계로 이동해주세요')
+                                Alert.alert('I succeeded in proving it! Please move on to the next step')
                                 setIcon('arrow-right')
                                 // props.navigation.navigate('SetPassword')
                                 stopTimer();
                                 Keyboard.dismiss();
                             }
                             else if (props.sms.message === MESSAGE_TIME_OUT) {
-                                Alert.alert('인증시간이 지났습니다! 재인증을 해주세요');
+                                Alert.alert('Time for proof has passed! Please re-certify it');
                                 Keyboard.dismiss();
                             }
                             else {
-                                Alert.alert('잘못된 인증번호입니다! 다시 입력해주세요')
+                                Alert.alert('Invalid authentication number! Please type it again')
                             }
                         }} />
                     </View>

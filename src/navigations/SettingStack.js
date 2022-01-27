@@ -37,24 +37,24 @@ const SettingStackScreen = (props) => {
 
             <SettingStack.Screen name="SettingMain" component={SettingMainScreen}
                 options={{
-                    title: '설정',
+                    title: 'Setting',
                 }} />
 
             <SettingStack.Screen name="MyInformation" component={MyInformationScreen}
                 options={{
-                    title: '사업자 정보 조회',
+                    title: 'My Information',
                 }} />
             <SettingStack.Screen name="RegisterNfc" component={RegisterNfcScreen}
                 options={{
-                    title: 'NFC 등록',
+                    title: 'Register NFC',
                 }} />
             <SettingStack.Screen name="Logout" component={LogoutScreen}
                 options={{
-                    title: '로그아웃',
+                    title: 'LOG OUT',
                 }} />
             <SettingStack.Screen name="Withdrawal" component={WithdrawalScreen}
                 options={{
-                    title: '회원탈퇴',
+                    title: 'Membership Withdrawal',
                 }} />
             <SettingStack.Screen name="ResetPassword" component={ResetPasswordScreen}
                 options={{
