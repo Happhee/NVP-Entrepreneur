@@ -56,7 +56,7 @@ function authReducer(state = initialState, action) {
             }
 
         case CHECK_DUPLICATE_ID_SUCCESS:
-            Alert.alert('⭐️ 사용가능한 아이디입니다 ⭐️');
+            Alert.alert('⭐️ You can use this ID ⭐️');
 
             return {
                 ...state,

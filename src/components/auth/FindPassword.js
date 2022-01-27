@@ -75,7 +75,7 @@ function FindPassword(props) {
                         }} /> */}
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>Business Registration Number</Text>
+                        <Text style={authStyles.inputLongTitleText}>Business Registration Number</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"

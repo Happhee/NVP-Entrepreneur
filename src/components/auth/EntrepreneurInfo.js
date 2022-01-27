@@ -21,10 +21,10 @@ function EntrepreneurInfo(props) {
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={authStyles.container}>
-                <Header title="NVP" subTitle="Enter Business Information" />
+                <Header title="NVP" subTitle="Business Information" />
                 <View style={authStyles.inputRoot}>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>Business Registration Number</Text>
+                        <Text style={authStyles.inputLongTitleText}>Business Registration Number</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
@@ -44,7 +44,7 @@ function EntrepreneurInfo(props) {
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>Name of the Representative</Text>
+                        <Text style={authStyles.inputTitleText}>Name</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             placeholderTextColor={colors.nvpUnder}
@@ -72,7 +72,7 @@ function EntrepreneurInfo(props) {
                         />
                     </View>
                     <View style={authStyles.buttonView}>
-                        <ConfirmButton buttonText='Filming a Business License.' onPress={() => {
+                        <ConfirmButton buttonText='Filming a Business License' onPress={() => {
                             navigation.navigate('BusinessLicense')
                         }} />
                     </View>

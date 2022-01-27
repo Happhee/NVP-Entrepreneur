@@ -12,7 +12,9 @@ function Login(props) {
     const navigation = useNavigation();
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
+    const [login, setLogin] = useState(false);
 
+    console.log(props.entrepreneur);
     useEffect(() => {
         AsyncStorage.getItem('id')
             .then((value) => {
@@ -26,7 +28,7 @@ function Login(props) {
                 console.log(err);
             })
 
-    }, [id])
+    }, [props.entrepreneur])
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
@@ -70,6 +72,7 @@ function Login(props) {
                             console.log('로그인요청')
                             console.log(id)
                             props.login({ id: id, password: password })
+                            setLogin(true)
 
                         }} />
                     </View>

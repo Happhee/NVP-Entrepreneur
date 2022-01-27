@@ -25,7 +25,8 @@ function ChoiceIdPassword(props) {
                     <View style={authStyles.findButtonView}>
                         <FontAwesome
                             size={120} name="id-card-o" color='white' />
-                        <Text style={authStyles.findTitileText} >Finding the ID</Text>
+                        <Text style={authStyles.findTitileText} >Finding</Text>
+                        <Text style={authStyles.findTitileText} >ID</Text>
                     </View>
                 </TouchableWithoutFeedback>
 
@@ -35,7 +36,8 @@ function ChoiceIdPassword(props) {
                     <View style={authStyles.findButtonView}>
                         <MaterialCommunityIcons
                             size={120} name="cellphone-key" color='white' />
-                        <Text style={authStyles.findTitileText} >Finding a Password</Text>
+                        <Text style={authStyles.findTitileText} >Finding</Text>
+                        <Text style={authStyles.findTitileText} >PW</Text>
 
                     </View>
                 </TouchableWithoutFeedback>

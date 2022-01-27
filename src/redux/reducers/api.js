@@ -17,7 +17,7 @@ function apiReducer(state = initialState, action) {
             }
 
         case API_CHECK_ENTREPRENEUR_STATUS_SUCCESS:
-            Alert.alert(action.payload.tax_type)
+            Alert.alert('This is a business number that is not registered with the National Tax Service')
 
             return {
                 ...state,
@@ -27,7 +27,6 @@ function apiReducer(state = initialState, action) {
             }
 
         case API_CHECK_ENTREPRENEUR_STATUS_FAILURE:
-            Alert.alert('Request failed')
             return initialState;
     }
     return { ...state }

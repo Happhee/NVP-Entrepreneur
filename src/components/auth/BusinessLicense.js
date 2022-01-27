@@ -13,10 +13,12 @@ function BusinessLicense(props) {
         <View style={businessLicenseStyles.container}>
 
             <View style={businessLicenseStyles.header}>
-                <Text style={businessLicenseStyles.headerFont}>Business license photo shoot</Text>
+                <Text style={businessLicenseStyles.headerFont}>Business license</Text>
+                <Text style={businessLicenseStyles.headerFont}> Photo shoot</Text>
             </View>
             <View style={businessLicenseStyles.registerInfo}>
-                <Text style={businessLicenseStyles.registerFont}>Please take a photo of your registration card so that a square box appears.</Text>
+                <Text style={businessLicenseStyles.registerFont}>Please take a photo of your registration card</Text>
+                <Text style={businessLicenseStyles.registerFont}>so that a square box appears</Text>
             </View>
 
             <View style={businessLicenseStyles.cameraView} >

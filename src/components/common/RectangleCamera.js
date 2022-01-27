@@ -376,7 +376,7 @@ class RectangleCamera extends PureComponent {
                                 fontFamily: 'DoHyeon-Regular',
                                 color: '#333333', fontSize: 30, marginTop: 10
                             }}>
-                                로딩중입니다
+                                Loading
                             </Text>
                         </View>
                     </View>
@@ -464,7 +464,7 @@ class RectangleCamera extends PureComponent {
                                 paddingBottom: hp(3),
                             }}>
                             <Text style={rectangleStyles.idCardResult}>
-                                사업자 등록증 촬영 결과
+                                Result
                             </Text>
                         </View>
                         <ScrollView
@@ -501,7 +501,7 @@ class RectangleCamera extends PureComponent {
                                                 this.feedback(1);
                                             }
                                         }}>
-                                        <Text style={rectangleStyles.btn_l_text}>다시찍기</Text>
+                                        <Text style={rectangleStyles.btn_l_text}>Take it again</Text>
                                     </TouchableOpacity>
                                 </View>
 
@@ -513,7 +513,7 @@ class RectangleCamera extends PureComponent {
                                                 this.feedback(2);
                                             }
                                         }}>
-                                        <Text style={rectangleStyles.btn_r_text}>사용하기</Text>
+                                        <Text style={rectangleStyles.btn_r_text}>Use it</Text>
                                     </TouchableOpacity>
                                 </View>
 

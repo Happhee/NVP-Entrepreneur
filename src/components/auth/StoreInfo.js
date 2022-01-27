@@ -119,7 +119,7 @@ function StoreInfo(props) {
                                 }
                             }}
                         />
-                        <ConfirmButton buttonText='Certified' onPress={() => {
+                        <ConfirmButton buttonText='Certify' onPress={() => {
                             if (isPhoneNumber(storePhone)) {
                                 Alert.alert('The valid time is 3 minutes');
                                 startTimer();
@@ -132,7 +132,7 @@ function StoreInfo(props) {
                         }} />
                     </View>
                     <View style={authStyles.inputView}>
-                        <Text style={authStyles.inputTitleText}>Authentication Number</Text>
+                        <Text style={authStyles.inputLongTitleText}>Certified Number</Text>
                         <TextInput
                             style={authStyles.inputTextInput}
                             keyboardType="number-pad"
