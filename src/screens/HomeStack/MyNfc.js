@@ -31,7 +31,7 @@ class App extends React.Component {
         try {
             let tech = Platform.OS === 'ios' ? NfcTech.MifareIOS : NfcTech.NfcA;
             let resp = await NfcManager.requestTechnology(tech, {
-                alertMessage: 'Ready to do some custom Mifare cmd!'
+                alertMessage: 'Ready'
             });
 
             let text = this.state.text;
@@ -63,7 +63,8 @@ class App extends React.Component {
             resp = await cmd(currentPayload);
 
             this.setState({
-                log: resp.toString()
+                //log: resp.toString()
+                log:"complete!"
             })
 
             this._cleanUp();
@@ -90,17 +91,16 @@ class App extends React.Component {
                     autoCompleteType="off"
                     autoCapitalize="none"
                     autoCorrect={false}
-                    placeholderTextColor="#888888"
-                    placeholder="상호명을 입력하세요" />
+                    placeholderTextColor="#808080"
+                    fontFamily="DoHyeon_Regular"
+                    placeholder="Write down the name of a store" />
 
                 <TouchableOpacity
                     style={styles.buttonWrite}
                     onPress={this.writeData}>
-                    <Text style={styles.buttonText}>입력</Text>
+                    <Text style={styles.buttonText}>Confirm</Text>
                 </TouchableOpacity>
-
-                <View style={styles.log}>
-                    <Text>{this.state.log}</Text>
+                <Text style={styles.buttonText2}>{this.state.log}</Text>
                 </View>
             </SafeAreaView>
         )
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginBottom: 10,
         height: 50,
+        fontSize: 25,
         textAlign: 'center',
         color: 'black'
     },
@@ -129,19 +130,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,
-        backgroundColor: '#9D2235'
-    },
-    buttonRead: {
-        marginLeft: 20,
-        marginRight: 20,
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 8,
-        backgroundColor: '#006C5B'
+        backgroundColor: '#00B990'
     },
     buttonText: {
-        color: '#ffffff'
+        color: '#ffffff',
+        fontSize: 20,
+    },
+    buttonText2: {
+        color: '#808080',
+        fontSize: 20,
     },
     log: {
         marginTop: 30,
